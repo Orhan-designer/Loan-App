@@ -1,0 +1,94 @@
+<div class="parent">
+    <!-- header starts -->
+    <header class="header">
+        <div class="header_subcontainer">
+            <h1 class="title">Loan Management System</h1>
+            <p>
+                <a routerLink="/login">Log Out</a>
+            </p>
+        </div>
+    </header>
+    <!-- header ends -->
+
+    <!-- side navigation starts -->
+    <nav class="side_nav">
+        <ul>
+            <a routerLink="/home">
+                <li>Home</li>
+            </a>
+            <a routerLink="/loans">
+                <li>Loans</li>
+            </a>
+            <a routerLink="/contact-list">
+                <li>Contact List</li>
+            </a>
+            <a routerLink="/new-credit">
+                <li>New Credit</li>
+            </a>
+            <a routerLink="/add-new-friends">
+                <li>Add New Friends</li>
+            </a>
+        </ul>
+    </nav>
+    <!-- side navigation ends -->
+
+    <!-- main starts -->
+    <main class="main">
+        <div class="main_subcontainer">
+            <h2>Filter</h2>
+            <div appearance="standard">
+                <label for="matInput"></label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+            </div>
+
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" (matSortChange)="announceSortChange($event)">
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by id">
+                        Id
+                    </th>
+                    <td mat-cell *matCellDef="let element"><a>{{element.id}}</a> </td>
+                </ng-container>
+                <ng-container matColumnDef="fullName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by fullName">
+                        FullName
+                    </th>
+                    <td mat-cell *matCellDef="let element"><a>{{element.fullName}}</a></td>
+                </ng-container>
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by email">
+                        Email
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                </ng-container>
+                <ng-container matColumnDef="address">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by address">
+                        Address
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                </ng-container>
+                <ng-container matColumnDef="city">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by city">
+                        City
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+                </ng-container>
+                <ng-container matColumnDef="phone">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by phone">
+                        Phone
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                </ng-container>
+                <ng-container matColumnDef="gender">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by gender">
+                        Gender
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </main>
+    <!-- main ends -->
+</div>

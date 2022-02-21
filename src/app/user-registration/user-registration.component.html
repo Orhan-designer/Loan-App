@@ -1,0 +1,30 @@
+<div class="main_subcontainer">
+
+    <form [formGroup]="userForm">
+        <div class="container">
+            <h2> Register Form </h2>
+            <p> Please fill in this form to create an account.</p>
+            <hr>
+            <mat-form-field>
+                <mat-label><strong>Email</strong></mat-label>
+                <input type="email" matInput class="form-control" id="email" name="email" required maxLength='30'
+                    formControlName="email">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label><strong>Password</strong></mat-label>
+                <input type="password" matInput class="form-control" id="password" name="password" required
+                    maxLength='15' formControlName="password">
+            </mat-form-field>
+
+            <!-- <label for="phone"><b>Phone *</b>
+                <input type="number" class="form-control" id="phone" name="phone" required 
+                formControlName="phone">
+            </label> -->
+
+            <button mat-raised-button (click)="onSubmit()" routerLink="/profile" [disabled]="!userForm.valid">Log
+                In</button>
+        </div>
+
+    </form>
+</div>
