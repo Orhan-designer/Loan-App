@@ -1,105 +1,88 @@
-<div class="parent">
-    <!-- header starts -->
-    <header class="header">
-        <div class="header_subcontainer">
-            <h1 class="title">Loan Management System</h1>
-            <p>
-                <a routerLink="/login">Log Out</a>
-            </p>
-        </div>
-    </header>
-    <!-- header ends -->
+<div class="header" *ngIf="navigation" hidden>
+    <div class="header_subcontainer">
+        <mat-tab-group>
+            <mat-tab label="Loans">
+                <ul>
+                    <a routerLink="/loans">
+                        <li>Loans</li>
+                    </a>
+                </ul>
+            </mat-tab>
+            <mat-tab label="Contact List">
+                <ul>
+                    <a routerLink="/contact-list">
+                        <li>Contact List</li>
+                    </a>
+                </ul>
+            </mat-tab>
+            <mat-tab label="New Loan">
+                <ul>
+                    <a routerLink="/new-credit">
+                        <li>New Loan</li>
+                    </a>
+                </ul>
+            </mat-tab>
+            <mat-tab label="Add New Friends">
+                <ul>
+                    <a routerLink="/add-new-friends">
+                        <li>Add New Friends</li>
+                    </a>
+                </ul>
+            </mat-tab>
+        </mat-tab-group>
+        <h1 class="title">Loan Management System</h1>
+        <button mat-raised-button class="btn" routerLink="/login">Log Out</button>
+    </div>
+</div>
 
-    <!-- side navigation starts -->
-    <nav class="side_nav">
-        <ul>
-            <a routerLink="/home">
-                <li>Home</li>
-            </a>
-            <a routerLink="/loans">
-                <li>Loans</li>
-            </a>
-            <a routerLink="/contact-list">
-                <li>Contact List</li>
-            </a>
-            <a routerLink="/new-credit">
-                <li>New Credit</li>
-            </a>
-            <a routerLink="/add-new-friends">
-                <li>Add New Friends</li>
-            </a>
-        </ul>
-    </nav>
-    <!-- side navigation ends -->
+<mat-spinner *ngIf="usersLoading"></mat-spinner>
+<div class="container">
+    <form *ngIf="!usersLoading" [formGroup]="newCreditForm">
+        <h3>Open New Loan</h3>
 
-    <!-- main starts -->
-    <main class="main">
-        <div class="main_subcontainer">
-            <div class="container">
-                <form [formGroup]="newCreditForm">
-                    <h3>Open New Credit</h3>
+        <mat-form-field>
+            <input type="text" matInput id="loanName" name="loanName" placeholder="Loan Name" required
+                formControlName="loanName">
+        </mat-form-field>
 
-                    <mat-form-field>
-                        <mat-label><i class="fa fa-user"></i><strong> Full Name</strong></mat-label>
-                        <input type="text" matInput id="firstName" name="firstName" placeholder="John M. Doe" required
-                            pattern="[a-zA-Zа-яА-Я ]*" maxLength='30' formControlName="fullName">
-                    </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>First Person</mat-label>
+            <input type="text" placeholder="Pick one" aria-label="First Person" matInput formControlName="firstPerson"
+                [matAutocomplete]="auto">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name"
+                    (click)="selectName(option)">
+                    {{option.name}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
 
-                    <mat-form-field>
-                        <mat-label><i class="fa fa-envelope"></i><strong> Email</strong></mat-label>
-                        <input type="email" matInput id="firstName" name="firstName" placeholder="john@example.com"
-                            required maxLength='30' formControlName="email">
-                    </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Second Person</mat-label>
+            <input type="text" placeholder="Pick one" aria-label="Second Person" matInput formControlName="secondPerson"
+                [matAutocomplete]="auto2">
+            <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions2 | async" [value]="option.name"
+                    (click)="selectName2(option)">
+                    {{option.name}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
 
-                    <mat-form-field>
-                        <mat-label><i class="fa fa-address-card"></i><strong> Address</strong></mat-label>
-                        <input type="text" matInput id="address" name="address" placeholder="542 W. 15th Street"
-                            required maxLength='30' formControlName="address">
-                    </mat-form-field>
+        <mat-form-field>
+            <mat-label>How much</mat-label>
+            <input type="text" matInput id="howMuch" name="howMuch" placeholder="How much" required
+                formControlName="howMuch">
+        </mat-form-field>
 
-                    <mat-form-field>
-                        <mat-label><i class="fa fa-institution"></i><strong> City</strong></mat-label>
-                        <input type="text" matInput id="city" name="city" placeholder="New York" required maxLength='30'
-                            formControlName="city">
-                    </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Reason</mat-label>
+            <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5" formControlName="reason"></textarea>
+        </mat-form-field>
 
-                    <mat-form-field>
-                        <mat-label><i class="fa fa-phone"></i><strong> Phone Number</strong></mat-label>
-                        <input type="number" matInput id="phone" name="phone" placeholder="Phone Number..." required
-                            maxLength='30' formControlName="phone">
-                    </mat-form-field>
-
-                    <mat-form-field>
-                        <mat-label><i class="fa fa-coins"></i><strong> How Much</strong></mat-label>
-                        <input type="text" matInput id="howMuch" name="howMuch" placeholder="How much" required
-                            formControlName="howMuch">
-                    </mat-form-field>
-
-                    <mat-form-field>
-                        <mat-label><i class="fa fa-calendar"></i><strong> Date of Creation</strong></mat-label>
-                        <input type="date" matInput id="date" name="date" placeholder="Date" required
-                            formControlName="date">
-                    </mat-form-field>
-
-                    <mat-form-field>
-                        <mat-label><i class="fa fa-question"></i><strong> Reason</strong></mat-label>
-                        <input type="text" matInput id="reason" name="reason" placeholder="Reason" required
-                            formControlName="reason">
-                    </mat-form-field>
-
-                    <mat-form-field>
-                        <mat-label><i class="fa fa-male"></i><strong> Gender</strong></mat-label>
-                        <select matNativeControl id="gender" name="gender" required formControlName="gender">
-                            <option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
-                        </select>
-                    </mat-form-field>
-
-                    <button mat-raised-button color="primary" routerLink="/profile" (click)="onSubmit()"
-                        [disabled]="!newCreditForm.valid">Create a New Credit
-                    </button>
-                </form>
-            </div>
-        </div>
-    </main>
-    <!-- main ends -->
+        <button mat-raised-button color="primary" (click)="onSubmit()"
+            [disabled]="newCreditForm.status === 'INVALID'">Create New Loan
+        </button>
+    </form>
 </div>

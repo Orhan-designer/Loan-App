@@ -4,34 +4,33 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-user-registration',
-  templateUrl: './user-registration.component.html',
-  styleUrls: ['./user-registration.component.css']
+  selector: 'app-user-login',
+  templateUrl: './user-login.component.html',
+  styleUrls: ['./user-login.component.css']
 })
-export class UserRegistrationComponent implements OnInit {
-
-  constructor(private router: Router, private _auth: AuthService) { }
-
-  ngOnInit(): void { }
-
+export class UserLoginComponent implements OnInit {
   navigation = ['Loans', 'Contact List', 'New Loan', 'Add New Friends'];
 
+  constructor(private _auth: AuthService, private router: Router) { }
+
+  ngOnInit(): void {
+  }
+
   userForm = new FormGroup({
-    email: new FormControl(''),
+    email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
 
   newUser = this.userForm.value;
 
-  registerUser() {
+  loginUser() {
     this.newUser = this.userForm.value;
-    this._auth.registerUser(this.newUser)
+    this._auth.loginUser(this.newUser)
     .subscribe(
       res => console.log(res),
       err => console.log(err)
     )
-    this.router.navigate([`/profile`])
+    this.router.navigate([`/profile`]);
     console.log(this.newUser);
   }
-
 }

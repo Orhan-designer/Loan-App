@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Users } from '../users';
 import { UserService } from '../user.service';
+import { NewFriendsService } from '../new-friends.service';
 
 @Component({
   selector: 'app-add-new-friends',
@@ -10,9 +11,11 @@ import { UserService } from '../user.service';
   styleUrls: ['./add-new-friends.component.css']
 })
 export class AddNewFriendsComponent implements OnInit {
-  users: Users[] = []
+  navigation = ['Loans', 'Contact List', 'New Loan', 'Add New Friends'];
 
-  constructor(private router: Router, private userService: UserService) { }
+  users: Users[] = [];
+  constructor(private router: Router, private userService: UserService,
+    private _friendService: NewFriendsService) { }
 
   ngOnInit(): void {
   }
@@ -24,22 +27,26 @@ export class AddNewFriendsComponent implements OnInit {
     city: new FormControl(''),
     phone: new FormControl(''),
     gender: new FormControl('')
-  })
+  });
 
   addNewFriend = this.newFriendForm.value;
-  submitted = false;
-  model = new Users(0, '', '', '', '', 0, '')
+  model = new Users(0, '', '', '', '', 0, '');
 
-  gender = ['Male', 'Female']
+  gender = ['Male', 'Female'];
 
   onSubmit(): void {
     this.addNewFriend = this.newFriendForm.value;
-    this.router.navigate([`/contact-list`])
-    this.submitted = true;
+    this._friendService.getFriends(this.addNewFriend)
+      .subscribe(
+        res => this.addNewFriend = res,
+        err => console.log(err)
+      );
+    this.router.navigate([`/contact-list`]);
     this.userService.addUser(this.addNewFriend as Users)
-    .subscribe(() => {
-      this.users.push(this.model)
-    })
+      .subscribe(() => {
+        this.users.push(this.model);
+      });
+
     console.log(this.addNewFriend);
     console.log(this.users);
   }

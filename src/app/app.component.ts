@@ -5,7 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'LoanApp';
+
+  navigation = ['Loans', 'Contact List', 'New Loan', 'Add New Friends'];
 
 }

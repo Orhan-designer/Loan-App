@@ -1,0 +1,43 @@
+.header {
+  background-color: #007af6;
+  display: flex;
+  justify-content: center;
+}
+
+.header_subcontainer {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  font-size: 22px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a:hover,
+a:focus {
+  color: orange;
+}
+
+.main {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-nav {
+  width: 10%;
+  display: flex;
+  justify-content: space-around;
+}

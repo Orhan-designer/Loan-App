@@ -4,6 +4,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort } from '@angular/material/sort';
 import { Users } from '../users';
 import { UsersMemoryDataService } from '../users-memory-data.service';
+import { TestService } from '../services/test.service';
 
 @Component({
   selector: 'app-contact-list',
@@ -11,8 +12,11 @@ import { UsersMemoryDataService } from '../users-memory-data.service';
   styleUrls: ['./contact-list.component.css']
 })
 export class ContactListComponent implements OnInit {
+  navigation = ['Loans', 'Contact List', 'New Loan', 'Add New Friends'];
+  
   displayedColumns: string[] = ['id', 'fullName', 'email', 'address', 'city', 'phone', 'gender'];
   dataSource = new MatTableDataSource(this.usersData.users);
+  usersLoading: boolean = true;
 
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -22,7 +26,8 @@ export class ContactListComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase()
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    
   }
 
   announceSortChange(sortState: Sort) {
@@ -33,9 +38,12 @@ export class ContactListComponent implements OnInit {
     }
   }
 
-  constructor(private usersData: UsersMemoryDataService, private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(
+    private usersData: UsersMemoryDataService,
+    private _liveAnnouncer: LiveAnnouncer,
+    private testService: TestService) { }
 
   ngOnInit(): void {
+    console.log(this.testService.getFriends())
   }
-
 }

@@ -16,12 +16,12 @@ export class UserService {
   };
 
   getUser(id: any): Observable<any> {
-    return of(this.usersData.users.find(u => u.id === id))
+    return of(this.usersData.users.find(u => u === u));
   }
 
   addUser(user: any): Observable<Users[]> {
     user.id = this.usersData.users[this.usersData.users.length - 1].id + 1;
-    this.usersData.users.push(user)
-    return of(user)
+    this.usersData.users.push(user);
+    return of(user);
   }
 }

@@ -1,99 +1,69 @@
-.parent {
-  display: grid;
-  grid-template-columns: 3fr 12fr repeat(3, 1fr);
-  grid-template-rows: 1fr 10.37fr repeat(3, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+table {
+  width: 100%;
+  /* background-color: green; */
+}
+
+input {
+  width: 50%;
+}
+
+.container {
+  width: 70vw;
+  padding: 16px;
+  background-color: rgba(242, 242, 242, 0.7);
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  margin: 30px auto;
 }
 
 .header {
-  grid-area: 1 / 1 / 2 / 6;
+  width: 100vw;
   background-color: #007af6;
   display: flex;
   justify-content: center;
-  padding: 10px 0;
 }
 
 .header_subcontainer {
-  width: 80%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.header_subcontainer h1 {
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+h1 {
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 24px;
+}
+
+a {
+  margin: 0 10px;
+  text-decoration: none;
   color: white;
   font-size: 22px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.header_subcontainer p a {
-  color: white;
+.btn {
+  width: 10%;
+  color: black;
+  padding: 10px 10px;
+  border: none;
+  cursor: pointer;
   font-size: 20px;
-  text-decoration: none;
 }
 
-.header_subcontainer p a:hover {
-  color: orange;
+.btn:hover {
+  background-color: aqua;
 }
 
-.side_nav {
-  grid-area: 2 / 1 / 6 / 2;
-  background-color: #30363a;
-}
-
-.side_nav ul {
-  list-style: none;
-  padding: 0px;
-}
-
-.side_nav a {
-  text-decoration: none;
-}
-
-.side_nav a li {
-  text-decoration: none;
-  color: white;
-  font-size: 18px;
-  padding: 10px 0;
-  background: #111315;
-  margin: 10px 0;
-}
-
-.side_nav a li:hover {
-  background-color: orange;
-}
-
-.main {
-  grid-area: 2 / 2 / 6 / 6;
-}
-
-table {
-  width: 100%;
-}
-th.mat-sort-header-sorted {
+.element {
   color: black;
-}
-label {
-  margin-left: 5px;
-  font-size: 1.2rem;
-  font-family: serif;
-}
-td a {
-  text-decoration: none;
-  color: black;
-}
-td a:hover {
-  color: #f73b7d;
-}
-
-h2 {
-  margin: 5px 0 0 5px;
-}
-input {
-  display: block;
-  width: 20%;
-  padding: 0.5rem;
-  margin: 1rem 0;
-  box-sizing: border-box;
+  font-size: 14px;
 }

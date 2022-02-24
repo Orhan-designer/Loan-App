@@ -1,12 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('./app/user-profile/profile.component.css');
 
 body {
     background-color: rgba(7, 4, 4, 0.705);
-    background-image: url('../image/CASH-LOAN-PHOTO.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 html, body { 
     height: 100%;

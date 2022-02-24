@@ -1,42 +1,64 @@
-<div class="parent">
-    <!-- header starts -->
-    <header class="header">
-        <div class="header_subcontainer">
-            <h1 class="title">Loan Management System</h1>
-            <p>
-                <a routerLink="/login">Log Out</a>
-            </p>
-        </div>
-    </header>
-    <!-- header ends -->
+<div class="header" *ngIf="navigation" hidden>
+    <div class="header_subcontainer">
+        <mat-tab-group>
+            <mat-tab label="Loans">
+                <ul>
+                    <a routerLink="/loans">
+                        <li>Loans</li>
+                    </a>
+                </ul>
+            </mat-tab>
+            <mat-tab label="Contact List">
+                <ul>
+                    <a routerLink="/contact-list">
+                        <li>Contact List</li>
+                    </a>
+                </ul>
+            </mat-tab>
+            <mat-tab label="New Loan">
+                <ul>
+                    <a routerLink="/new-credit">
+                        <li>New Loan</li>
+                    </a>
+                </ul>
+            </mat-tab>
+            <mat-tab label="Add New Friends">
+                <ul>
+                    <a routerLink="/add-new-friends">
+                        <li>Add New Friends</li>
+                    </a>
+                </ul>
+            </mat-tab>
+        </mat-tab-group>
+        <h1 class="title">Loan Management System</h1>
+        <button mat-raised-button class="btn" routerLink="/login">Log Out</button>
+    </div>
+</div>
 
-    <!-- side navigation starts -->
-    <nav class="side_nav">
-        <ul>
-            <a routerLink="/home">
-                <li>Home</li>
-            </a>
-            <a routerLink="/loans">
-                <li>Loans</li>
-            </a>
-            <a routerLink="/contact-list">
-                <li>Contact List</li>
-            </a>
-            <a routerLink="/new-credit">
-                <li>New Credit</li>
-            </a>
-            <a routerLink="/add-new-friends">
-                <li>Add New Friends</li>
-            </a>
-        </ul>
-    </nav>
-    <!-- side navigation ends -->
-
-    <!-- main starts -->
-    <main class="main">
-        <div class="main_subcontainer">
-
-        </div>
-    </main>
-    <!-- main ends -->
+<mat-spinner *ngIf="!isLoansLoaded"></mat-spinner>
+<div class="container" *ngIf="isLoansLoaded">
+    <mat-form-field appearance="fill">
+        <mat-label>Select user</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let user of users" [value]="user.name" (click)="selectUser(user)">
+                {{user.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let loan of loans" (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{loan.loanName}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    <span>User Name:</span><span>{{loan.secondPerson.name}} </span>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Summ: {{loan.howMuch}} $</p>
+            <p>Reason: {{loan.reason}}</p>
+            <p>Date: {{loan.date}}</p>
+        </mat-expansion-panel>
+    </mat-accordion>
 </div>

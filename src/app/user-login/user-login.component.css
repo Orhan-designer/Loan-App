@@ -1,8 +1,3 @@
-hr {
-  border: 1px solid #6f6f6f;
-  margin-bottom: 25px;
-}
-
 .mat-raised-button {
   background-color: #4caf50;
   color: white;
@@ -25,7 +20,7 @@ mat-label {
 
 .container {
   text-align: center;
-  width: 30%;
+  width: 25%;
   padding: 0px 10px;
   background-color: rgba(242, 242, 242, 0.7);
   border-radius: 3px;
@@ -42,5 +37,5 @@ mat-label {
 .title {
   color: white;
   font-size: 30px;
-  padding: 16px 0
+  padding: 16px 0;
 }

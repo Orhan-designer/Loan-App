@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+  navigation = ['Loans', 'Contact List', 'New Loan', 'Add New Friends'];
   constructor() { }
 
   ngOnInit(): void {
