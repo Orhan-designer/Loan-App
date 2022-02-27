@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PopUpComponent } from '../pop-up/pop-up.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-registration',
@@ -10,28 +13,45 @@ import { AuthService } from '../auth.service';
 })
 export class UserRegistrationComponent implements OnInit {
 
-  constructor(private router: Router, private _auth: AuthService) { }
+  hasHeader: boolean = true;
+
+  constructor(
+    private router: Router,
+    private _auth: AuthService,
+    private dialog: MatDialog,
+    private translateService: TranslateService,
+    private fb: FormBuilder,
+  ) { }
 
   ngOnInit(): void { }
 
-  navigation = ['Loans', 'Contact List', 'New Loan', 'Add New Friends'];
-
-  userForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('', [Validators.required]),
-  });
+  userForm = this.fb.group({
+    email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$')]),
+    password: new FormControl('', [Validators.required])
+  })
 
   newUser = this.userForm.value;
 
   registerUser() {
     this.newUser = this.userForm.value;
     this._auth.registerUser(this.newUser)
-    .subscribe(
-      res => console.log(res),
-      err => console.log(err)
-    )
-    this.router.navigate([`/profile`])
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err)
+      )
+    this.router.navigate([`/contact-list`])
     console.log(this.newUser);
   }
 
+  createDialog() {
+    this.dialog.open(PopUpComponent, {
+      data: {
+        register: 'You register successfully'
+      }
+    });
+  }
+
+  public selectLanguage(event: any) {
+    this.translateService.use(event.target.value)
+  }
 }

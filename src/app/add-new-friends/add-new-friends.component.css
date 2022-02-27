@@ -1,81 +1,37 @@
 .mat-raised-button {
-  color: white;
+  color: black;
   padding: 16px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 50%;
   opacity: 0.9;
   font-size: 20px;
+}
+
+.mat-raised-button:active {
+  color: white;
+  background-color: orange;
 }
 
 mat-form-field {
   width: 100%;
 }
 
+mat-label {
+  font-size: 16px;
+  color: white;
+}
+
 h3 {
   color: #6f6f6f;
-  font-size: 20px;
+  font-size: 24px;
+  text-align: center;
 }
 
 .container {
-  width: 30%;
-  /* padding: 16px; */
+  width: 50%;
   background-color: rgba(242, 242, 242, 0.7);
   border: 1px solid lightgrey;
   border-radius: 3px;
-  display: block;
   margin: 30px auto;
-}
-
-.header {
-  width: 100vw;
-  background-color: #007af6;
-  display: flex;
-  justify-content: center;
-}
-
-.header_subcontainer {
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-}
-
-h1 {
-  color: white;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 24px;
-}
-
-a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: white;
-  font-size: 22px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-a:hover,
-a:focus {
-  color: orange;
-}
-
-.btn {
-  width: 10%;
-  color: black;
-  padding: 10px 10px;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-.btn:hover {
-  background-color: aqua;
 }

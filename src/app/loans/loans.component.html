@@ -1,44 +1,7 @@
-<div class="header" *ngIf="navigation" hidden>
-    <div class="header_subcontainer">
-        <mat-tab-group>
-            <mat-tab label="Loans">
-                <ul>
-                    <a routerLink="/loans">
-                        <li>Loans</li>
-                    </a>
-                </ul>
-            </mat-tab>
-            <mat-tab label="Contact List">
-                <ul>
-                    <a routerLink="/contact-list">
-                        <li>Contact List</li>
-                    </a>
-                </ul>
-            </mat-tab>
-            <mat-tab label="New Loan">
-                <ul>
-                    <a routerLink="/new-credit">
-                        <li>New Loan</li>
-                    </a>
-                </ul>
-            </mat-tab>
-            <mat-tab label="Add New Friends">
-                <ul>
-                    <a routerLink="/add-new-friends">
-                        <li>Add New Friends</li>
-                    </a>
-                </ul>
-            </mat-tab>
-        </mat-tab-group>
-        <h1 class="title">Loan Management System</h1>
-        <button mat-raised-button class="btn" routerLink="/login">Log Out</button>
-    </div>
-</div>
-
 <mat-spinner *ngIf="!isLoansLoaded"></mat-spinner>
 <div class="container" *ngIf="isLoansLoaded">
     <mat-form-field appearance="fill">
-        <mat-label>Select user</mat-label>
+        <mat-label>{{'label.selectUser' | translate}}</mat-label>
         <mat-select>
             <mat-option *ngFor="let user of users" [value]="user.name" (click)="selectUser(user)">
                 {{user.name}}
@@ -50,15 +13,15 @@
             (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    {{loan.loanName}}
+                    {{'label.loanName' | translate}} {{loan.loanName}}
                 </mat-panel-title>
                 <mat-panel-description>
-                    <span>User Name:</span><span>{{loan.secondPerson.name}} </span>
+                    <span>{{'span.userName' | translate}}:</span><span>{{loan.secondPerson.name}}</span>
                 </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>Summ: {{loan.howMuch}} $</p>
-            <p>Reason: {{loan.reason}}</p>
-            <p>Date: {{loan.date}}</p>
+            <p>{{'p.sum' | translate}}: {{loan.howMuch}} $</p>
+            <p>{{'p.reason' | translate}}: {{loan.reason}}</p>
+            <p>{{'p.date' | translate}}: {{loan.date}}</p>
         </mat-expansion-panel>
     </mat-accordion>
 </div>

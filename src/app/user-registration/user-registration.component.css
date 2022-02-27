@@ -3,16 +3,25 @@ hr {
   margin-bottom: 25px;
 }
 
+h2 {
+  font-size: 24px;
+  color: #6f6f6f;
+  text-align: center;  
+}
+
 .mat-raised-button {
-  background-color: #4caf50;
-  color: white;
+  color: black;
   padding: 16px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 30%;
   opacity: 0.9;
-  font-size: 20px;
+  font-size: 20px; 
+}
+
+.mat-raised-button:active {
+  background-color: orange;
+  color: white;
 }
 
 mat-form-field {
@@ -21,26 +30,14 @@ mat-form-field {
 
 mat-label {
   font-size: 18px;
+  color: white;
 }
 
 .container {
-  text-align: center;
-  width: 30%;
+  text-align: left;
+  width: 90%;
   padding: 0px 10px;
   background-color: rgba(242, 242, 242, 0.7);
   border-radius: 3px;
   margin: 30px auto;
-}
-
-.header {
-  width: 100vw;
-  background-color: #007af6;
-  display: flex;
-  justify-content: center;
-}
-
-.title {
-  color: white;
-  font-size: 30px;
-  padding: 16px 0
 }

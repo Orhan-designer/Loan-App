@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,6 +10,16 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'LoanApp';
 
-  navigation = ['Loans', 'Contact List', 'New Loan', 'Add New Friends'];
+  hasHeader: boolean = true;
+  hasHeader1: boolean = true;
 
+  constructor(
+    private translateService: TranslateService,
+  ) { }
+
+  ngOnInit() { }
+
+  public selectLanguage(event: any) {
+    this.translateService.use(event.target.value)
+  }
 }

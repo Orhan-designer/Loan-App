@@ -1,25 +1,31 @@
-<div class="header" *ngIf="navigation" hidden>
-    <h1 class="title">Loan Management System</h1>
-</div>
-
 <form [formGroup]="userForm">
 
     <div class="container">
-        <h2> Log In </h2>
+        <h2>{{'title.logIn' | translate}}</h2>
 
         <mat-form-field>
-            <mat-label><strong>Enter you login</strong></mat-label>
+            <mat-label>{{'label.enterYouLogin' | translate}}</mat-label>
             <input type="text" matInput class="form-control" id="email" name="email" required formControlName="email">
+            <mat-error *ngIf="userForm.controls['email'].hasError('required')">
+                Email is <strong>required</strong>
+            </mat-error>
+            <mat-error
+                *ngIf="userForm.controls['email'].hasError('email') && !userForm.controls['email'].hasError('required')">
+                Please enter a valid email address
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label><strong>Enter you password</strong></mat-label>
+            <mat-label>{{'label.enterYouPassword' | translate}}</mat-label>
             <input type="password" matInput class="form-control" id="password" name="password" required
                 formControlName="password">
+            <mat-error *ngIf="userForm.controls['password'].hasError('required')">
+                Password is <strong>required</strong>
+            </mat-error>
         </mat-form-field>
 
-        <button type="button" mat-raised-button (click)="loginUser()" routerLink="/profile"
-            [disabled]="!userForm.valid">Log in</button>
+        <button type="button" mat-raised-button (click)="loginUser()" routerLink="/contact-list"
+            [disabled]="!userForm.valid">{{'buttons.logIn' | translate}}</button>
     </div>
 
 </form>

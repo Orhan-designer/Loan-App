@@ -5,6 +5,10 @@ import { Router } from '@angular/router';
 import { map, Observable, startWith, take } from 'rxjs';
 import { TestService } from '../services/test.service';
 import { LoanServiceService } from '../loan-service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PopUpComponent } from '../pop-up/pop-up.component';
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-new-credit',
   templateUrl: './new-credit.component.html',
@@ -13,7 +17,6 @@ import { LoanServiceService } from '../loan-service.service';
 export class NewCreditComponent implements OnInit {
 
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;
-  navigation = ['Loans', 'Contact List', 'New Loan', 'Add New Friends'];
 
   options: any[] = [];
   usersLoading: boolean = true;
@@ -36,7 +39,9 @@ export class NewCreditComponent implements OnInit {
     public fb: FormBuilder,
     private _ngZone: NgZone,
     private testService: TestService,
-    private _loan: LoanServiceService) { }
+    private _loan: LoanServiceService,
+    private dialog: MatDialog,
+    private translateService: TranslateService) { }
 
   ngOnInit(): void {
     this.getUsers();
@@ -84,7 +89,6 @@ export class NewCreditComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.newCreditForm)
     this.addNewCredit = this.newCreditForm.value;
     this._loan.getLoans(this.addNewCredit)
     .subscribe(
@@ -94,9 +98,19 @@ export class NewCreditComponent implements OnInit {
     this.addNewCredit.date = new Date(); // refactor date
     this.addNewCredit.firstPerson = this.name ? this.name : { name: this.addNewCredit.firstPerson, id: null };
     this.addNewCredit.secondPerson = this.name2 ? this.name2 : { name: this.addNewCredit.secondPerson, id: null };
-    console.log(this.addNewCredit)
     this.testService.addLoan(this.addNewCredit);
     this.router.navigate([`/loans`])
   }
 
+  createDialog() {
+    this.dialog.open(PopUpComponent, {
+      data: {
+        openLoan: 'A new loan has been added to your loans list'
+      }
+    });
+  }
+
+  public selectLanguage(event: any) {
+    this.translateService.use(event.target.value)
+  }
 }

@@ -1,6 +1,11 @@
+h1 {
+  color: #6f6f6f;
+  font-size: 24px;
+  text-align: center;
+}
+
 table {
   width: 100%;
-  /* background-color: green; */
 }
 
 input {
@@ -16,54 +21,6 @@ input {
   margin: 30px auto;
 }
 
-.header {
-  width: 100vw;
-  background-color: #007af6;
-  display: flex;
-  justify-content: center;
-}
-
-.header_subcontainer {
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-}
-
-h1 {
-  color: white;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 24px;
-}
-
-a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: white;
-  font-size: 22px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.btn {
-  width: 10%;
-  color: black;
-  padding: 10px 10px;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-.btn:hover {
-  background-color: aqua;
-}
-
-.element {
-  color: black;
-  font-size: 14px;
+th {
+  font-size: 16px;
 }

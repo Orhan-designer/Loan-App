@@ -1,0 +1,10 @@
+<div class="container">
+    <h2 *ngIf="data.register">{{'title.register' | translate}}</h2>
+    <h2 *ngIf="data.addFriend">{{'title.addFriend' | translate}}</h2>
+    <h2 *ngIf="data.openLoan">{{'title.openLoan' | translate}}</h2>
+    <div class="wrapper">
+        <button class="clickOk" (click)="pressOk()" color="primary" mat-raised-button>
+            Ok
+        </button>
+    </div>
+</div>

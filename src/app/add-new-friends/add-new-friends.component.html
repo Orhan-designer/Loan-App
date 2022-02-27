@@ -1,82 +1,48 @@
-<div class="header" *ngIf="navigation" hidden>
-    <div class="header_subcontainer">
-        <mat-tab-group>
-            <mat-tab label="Loans">
-                <ul>
-                    <a routerLink="/loans">
-                        <li>Loans</li>
-                    </a>
-                </ul>
-            </mat-tab>
-            <mat-tab label="Contact List">
-                <ul>
-                    <a routerLink="/contact-list">
-                        <li>Contact List</li>
-                    </a>
-                </ul>
-            </mat-tab>
-            <mat-tab label="New Loan">
-                <ul>
-                    <a routerLink="/new-credit">
-                        <li>New Loan</li>
-                    </a>
-                </ul>
-            </mat-tab>
-            <mat-tab label="Add New Friends">
-                <ul>
-                    <a routerLink="/add-new-friends">
-                        <li>Add New Friends</li>
-                    </a>
-                </ul>
-            </mat-tab>
-        </mat-tab-group>
-        <h1 class="title">Loan Management System</h1>
-        <button mat-raised-button class="btn" routerLink="/login">Log Out</button>
-    </div>
-</div>
-
 <div class="container">
     <form [formGroup]="newFriendForm">
-        <h3>Add New Friend</h3>
+        <h3>{{'title.addNewFriend' | translate}}</h3>
         <mat-form-field>
             <!-- <label for="firstName"><i class="fa fa-user"></i> Full Name</label> -->
-            <mat-label><i class="fa fa-user"></i><strong> Full Name</strong></mat-label>
-            <input type="text" matInput id="firstName" name="firstName" required pattern="[a-zA-Zа-яА-Я ]*"
-                maxLength='30' formControlName="fullName" placeholder="Full Name">
+            <mat-label>{{'ngContainer.fullName' | translate}}</mat-label>
+            <input type="text" matInput id="firstName" name="firstName" required formControlName="fullName"
+                placeholder="{{'ngContainer.fullName' | translate}}">
+            <mat-error *ngIf="newFriendForm.controls['fullName'].hasError('required')">
+                Name is <strong>required</strong>
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label><i class="fa fa-envelope"></i><strong> Email</strong></mat-label>
-            <input type="email" matInput id="email" name="email" placeholder="john@example.com" required maxLength='30'
+            <mat-label>{{'label.email' | translate}}</mat-label>
+            <input type="email" matInput id="email" name="email" placeholder="john@example.com" required
                 formControlName="email">
+            <mat-error *ngIf="newFriendForm.controls['email'].hasError('required')">
+                Email is <strong>required</strong>
+            </mat-error>
+            <mat-error
+                *ngIf="newFriendForm.controls['email'].hasError('email') && !newFriendForm.controls['email'].hasError('required')">
+                Please enter a valid email address
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label><i class="fa fa-address-card"></i><strong> Address</strong></mat-label>
-            <input type="text" matInput id="adress" name="address" placeholder="542 W. 15th Street" required
-                formControlName="address">
+            <mat-label>{{'ngContainer.city' | translate}}</mat-label>
+            <input type="text" matInput id="city" name="city" placeholder="{{'ngContainer.city' | translate}}" required
+                formControlName="city">
+            <mat-error *ngIf="newFriendForm.controls['city'].hasError('required')">
+                City is <strong>required</strong>
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label><i class="fa fa-institution"></i><strong> City</strong></mat-label>
-            <input type="text" matInput id="city" name="city" placeholder="New York" required formControlName="city">
+            <mat-label>{{'ngContainer.phone' | translate}}</mat-label>
+            <input type="number" matInput id="phone" name="phone" placeholder="{{'ngContainer.phone' | translate}}"
+                required formControlName="phone">
+            <mat-error *ngIf="newFriendForm.controls['phone'].hasError('required')">
+                Phone is <strong>required</strong>
+            </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
-            <mat-label><i class="fa fa-phone"></i><strong> Phone Number</strong></mat-label>
-            <input type="number" matInput id="phone" name="phone" placeholder="Phone Number..." required
-                formControlName="phone">
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label><i class="fa fa-male"></i><strong> Gender</strong></mat-label>
-            <select matNativeControl id="gender" name="gender" required formControlName="gender">
-                <option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
-            </select>
-        </mat-form-field>
-
-        <button mat-raised-button (click)="onSubmit()" color="primary"
-            [disabled]="!newFriendForm.valid">Add Friend
-        </button>
+        <button mat-raised-button (click)="onSubmit()" (click)="createDialog()" color="primary"
+            [disabled]="!newFriendForm.valid">{{'buttons.addNewFriend' | translate}}</button>
     </form>
 </div>

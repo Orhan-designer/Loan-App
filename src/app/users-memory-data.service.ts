@@ -5,15 +5,17 @@ import { Users } from './users';
   providedIn: 'root'
 })
 export class UsersMemoryDataService {
-  users = [
-    {id: 1}
-  ];
+  // users = [
+  //   {id: 1}
+  // ];
+  users: any[] = [];
 
   createDb() {
     return {users: this.users}
   }
 
-  genId(users: Users[]): number {
+  genId(users: Users[]): any {
+    console.log(users);
     return users.length > 0 ? Math.max(...users.map(user => user.id)) + 1 : 0;
   }
 

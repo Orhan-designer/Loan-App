@@ -1,36 +1,24 @@
-<div class="header" *ngIf="!navigation" hidden>
+<div class="header" *ngIf="hasHeader">
     <div class="header_subcontainer">
-        <!-- <h1 class="title">Loan Management System</h1> -->
-        <mat-tab-group>
-            <mat-tab label="Loans">
-                <ul>
-                    <a routerLink="/loans">
-                        <li>Loans</li>
-                    </a>
-                </ul>
-            </mat-tab>
-            <mat-tab label="Contact List">
-                <ul>
-                    <a routerLink="/contact-list">
-                        <li>Contact List</li>
-                    </a>
-                </ul>
-            </mat-tab>
-            <mat-tab label="New Loan">
-                <ul>
-                    <a routerLink="/new-credit">
-                        <li>New Loan</li>
-                    </a>
-                </ul>
-            </mat-tab>
-            <mat-tab label="Add New Friends">
-                <ul>
-                    <a routerLink="/add-new-friends">
-                        <li>Add New Friends</li>
-                    </a>
-                </ul>
-            </mat-tab>
-        </mat-tab-group>
+
+        <ul>
+            <a routerLink="/loans">
+                <li>{{'buttons.loans' | translate}}</li>
+            </a>
+
+            <a routerLink="/contact-list">
+                <li>{{'buttons.contactList' | translate}}</li>
+            </a>
+
+            <a routerLink="/new-credit">
+                <li>{{'buttons.newLoan' | translate}}</li>
+            </a>
+
+            <a routerLink="/add-new-friends">
+                <li>{{'buttons.addNewFriend' | translate}}</li>
+            </a>
+        </ul>
+
         <ul class="navbar-nav">
             <li>
                 <a routerLink="/register" routerLinkActive="active">Register</a>
@@ -39,12 +27,17 @@
                 <a routerLink="/login" routerLinkActive="active">Login</a>
             </li>
         </ul>
-    </div>
+        <h1 class="title">{{'title.loanManagementSystem' | translate}}</h1>
 
+        <button mat-raised-button routerLink="/login">{{'buttons.logOut' | translate}}</button>
+
+        <select (change)="selectLanguage($event)" class="language-picker">
+            <option value="en-US">English</option>
+            <option value="ru-RU">Russian</option>
+        </select>
+    </div>
 </div>
 
 <div class="main">
-    <div class="container">
-        <router-outlet></router-outlet>
-    </div>
+    <router-outlet></router-outlet>
 </div>

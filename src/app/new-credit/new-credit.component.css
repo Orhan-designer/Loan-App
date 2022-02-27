@@ -1,74 +1,41 @@
+h2 {
+  color: #6f6f6f;
+  font-size: 24px;
+  text-align: center;
+}
+
 mat-form-field {
   width: 100%;
 }
 
-.mat-raised-button {
+mat-label {
   color: white;
+  font-size: 15px;
+}
+
+.mat-raised-button {
+  color: black;
   padding: 16px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 50%;
   opacity: 0.9;
   font-size: 20px;
 }
 
+.mat-raised-button:active {
+  background-color: orange;
+  color: white;
+}
+
 .container {
-  width: 30%;
+  width: 40%;
   padding: 0px 10px;
   background-color: rgba(242, 242, 242, 0.7);
   border-radius: 3px;
   margin: 30px auto;
 }
 
-.header {
-  width: 100vw;
-  background-color: #007af6;
-  display: flex;
-  justify-content: center;
-}
-
-.header_subcontainer {
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-}
-
-h1 {
+input[type="text"] {
   color: white;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 24px;
-}
-
-a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: white;
-  font-size: 22px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-a:hover,
-a:focus {
-  color: orange;
-}
-
-.btn {
-  width: 10%;
-  color: black;
-  padding: 10px 10px;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-.btn:hover {
-  background-color: aqua;
 }

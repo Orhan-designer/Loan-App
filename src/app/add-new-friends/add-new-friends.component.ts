@@ -1,38 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Users } from '../users';
 import { UserService } from '../user.service';
 import { NewFriendsService } from '../new-friends.service';
-
+import { MatDialog } from '@angular/material/dialog';
+import { PopUpComponent } from '../pop-up/pop-up.component';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-add-new-friends',
   templateUrl: './add-new-friends.component.html',
   styleUrls: ['./add-new-friends.component.css']
 })
 export class AddNewFriendsComponent implements OnInit {
-  navigation = ['Loans', 'Contact List', 'New Loan', 'Add New Friends'];
 
   users: Users[] = [];
-  constructor(private router: Router, private userService: UserService,
-    private _friendService: NewFriendsService) { }
 
-  ngOnInit(): void {
-  }
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private _friendService: NewFriendsService,
+    private dialog: MatDialog,
+    private translateService: TranslateService,
+    private fb: FormBuilder) { }
 
-  newFriendForm = new FormGroup({
-    fullName: new FormControl(''),
-    email: new FormControl('', [Validators.required]),
-    address: new FormControl(''),
-    city: new FormControl(''),
-    phone: new FormControl(''),
-    gender: new FormControl('')
+  ngOnInit(): void {}
+
+  newFriendForm = this.fb.group({
+    fullName: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$')]),
+    city: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [Validators.required]),
   });
 
   addNewFriend = this.newFriendForm.value;
-  model = new Users(0, '', '', '', '', 0, '');
-
-  gender = ['Male', 'Female'];
+  model = new Users(0, '', '', '', 0);
 
   onSubmit(): void {
     this.addNewFriend = this.newFriendForm.value;
@@ -46,9 +48,17 @@ export class AddNewFriendsComponent implements OnInit {
       .subscribe(() => {
         this.users.push(this.model);
       });
+  };
 
-    console.log(this.addNewFriend);
-    console.log(this.users);
-  }
+  createDialog() {
+    this.dialog.open(PopUpComponent, {
+      data: {
+        addFriend: 'A new friend has been added to your contact list'
+      }
+    });
+  };
 
+  public selectLanguage(event: any) {
+    this.translateService.use(event.target.value);
+  };
 }

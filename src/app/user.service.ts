@@ -1,27 +1,55 @@
-import { Observable, of } from 'rxjs';
+import { Observable, of, tap, catchError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Users } from './users';
 import { UsersMemoryDataService } from './users-memory-data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { NewFriendsService } from './new-friends.service';
+import { MessageService } from './message.service';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private usersData: UsersMemoryDataService, private http: HttpClient,) { }
+  constructor(
+    private usersData: UsersMemoryDataService,
+    private http: HttpClient,
+    private friendService: NewFriendsService,
+    private messageService: MessageService
+  ) { }
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   getUser(id: any): Observable<any> {
-    return of(this.usersData.users.find(u => u === u));
+    return of(this.usersData.users.find(u => u.id === id));
   }
 
-  addUser(user: any): Observable<Users[]> {
-    user.id = this.usersData.users[this.usersData.users.length - 1].id + 1;
+  addUser(user: Users) {
+    user.id = this.usersData.users.length + 1; //добавляем пользователей начиная с айди номер 1
     this.usersData.users.push(user);
     return of(user);
   }
+
+  deleteUser(id: Users) {
+    const url = `${this.friendService.getFriendsById}/${id}`;
+
+    return this.http.delete<Users>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`deleted friend id=${id}`)),
+      catchError(this.handleError<Users>('deletedFriend'))
+    );
+
+  };
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      this.log(`${operation} failed: ${error.message}`);
+      return of(result as T)
+    };
+  };
+
+  private log(message: string) {
+    this.messageService.add(`HeroService: ${message}`);
+  };
 }

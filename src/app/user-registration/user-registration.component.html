@@ -1,25 +1,32 @@
-<div class="header" *ngIf="navigation" hidden>
-    <h1 class="title">Loan Management System</h1>
-</div>
-
 <div class="container">
     <form [formGroup]="userForm">
-        <h2> Register Form </h2>
+        <h2>{{'title.registerForm' | translate}}</h2>
         <hr>
 
         <mat-form-field>
-            <mat-label><strong>Email</strong></mat-label>
-            <input type="text" matInput class="form-control" id="email" name="email" required formControlName="email">
+            <mat-label>{{'label.email' | translate}}</mat-label>
+            <input type="text" matInput class="form-control" id="email" name="email" formControlName="email">
+            <mat-error *ngIf="userForm.controls['email'].hasError('required')">
+                Email is <strong>required</strong>
+            </mat-error>
+            <mat-error
+                *ngIf="userForm.controls['email'].hasError('email') && !userForm.controls['email'].hasError('required')">
+                Please enter a valid email address
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label><strong>Password</strong></mat-label>
+            <mat-label>{{'label.password' | translate}}</mat-label>
             <input type="password" matInput class="form-control" id="password" name="password" required
                 formControlName="password">
+            <mat-error *ngIf="userForm.controls['password'].hasError('required')">
+                Password is <strong>required</strong>
+            </mat-error>
         </mat-form-field>
 
-        <button type="button" mat-raised-button (click)="registerUser()" routerLink="/profile"
-            [disabled]="!userForm.valid">Registration</button>
+        <button type="button" mat-raised-button (click)="createDialog()" (click)="registerUser()" routerLink="/profile"
+            [disabled]="!userForm.valid">{{'buttons.registration' | translate}}
+        </button>
 
     </form>
 </div>

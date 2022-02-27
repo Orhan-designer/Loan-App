@@ -1,0 +1,53 @@
+{
+    "buttons": {
+        "registration": "Registration",
+        "logIn": "Log in",
+        "logOut": "Log out",
+        "addFriend": "Add new friends",
+        "newLoan": "New Loan",
+        "contactList": "Contact List",
+        "loans": "Loans",
+        "createNewLoan": "Create New Loan",
+        "addNewFriend": "Add New Friend"
+    },
+    "title": {
+        "registerForm": "Register Form",
+        "loanManagementSystem": "Loan Management System",
+        "openNewLoan": "Open New Loan",
+        "filter": "Filter",
+        "addNewFriend": "Add New Friend",
+        "logIn": "Log In",
+        "register": "Registered successful",
+        "addFriend": "A new friend has been added to your contact list",
+        "openLoan": "A new loan has been added to your loans list"
+    },
+    "label": {
+        "email": "Email",
+        "password": "Password",
+        "loanName": "Loan Name",
+        "firstPerson": "First Person",
+        "secondPerson": "Second Person",
+        "howMuch": "How Much",
+        "reason": "Reason",
+        "selectUser": "Select User",
+        "search": "Search",
+        "enterYouLogin": "Enter you login",
+        "enterYouPassword": "Enter you password",
+        "pickOne": "Pick One"
+        
+    },
+    "span": {
+        "userName": "User Name"
+    },
+    "p": {
+        "sum": "Sum",
+        "reason": "Reason",
+        "date": "Date"
+    },
+    "ngContainer": {
+        "id": "id",
+        "fullName": "Full Name",
+        "city": "City",
+        "phone": "Phone"
+    }
+}

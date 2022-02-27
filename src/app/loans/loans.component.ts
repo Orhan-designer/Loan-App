@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TestService } from '../services/test.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-loans',
@@ -7,7 +8,6 @@ import { TestService } from '../services/test.service';
   styleUrls: ['./loans.component.css']
 })
 export class LoansComponent implements OnInit {
-  navigation = ['Loans', 'Contact List', 'New Loan', 'Add New Friends'];
 
   isLoansLoaded: boolean = false;
   panelOpenState = false;
@@ -15,7 +15,8 @@ export class LoansComponent implements OnInit {
   users: any[] = [];
 
   constructor(
-    private testService: TestService
+    private testService: TestService,
+    private translateService: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -36,9 +37,13 @@ export class LoansComponent implements OnInit {
     setTimeout(() => {
       this.loans = this.testService.loans;
       this.users = this.testService.users;
-      console.log(this.loans)
+      // console.log(this.loans)
       this.isLoansLoaded = true;
     }, 500);
+  }
+
+  public selectLanguage(event: any) {
+    this.translateService.use(event.target.value);
   }
 
 }

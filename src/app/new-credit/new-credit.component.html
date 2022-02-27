@@ -1,54 +1,24 @@
-<div class="header" *ngIf="navigation" hidden>
-    <div class="header_subcontainer">
-        <mat-tab-group>
-            <mat-tab label="Loans">
-                <ul>
-                    <a routerLink="/loans">
-                        <li>Loans</li>
-                    </a>
-                </ul>
-            </mat-tab>
-            <mat-tab label="Contact List">
-                <ul>
-                    <a routerLink="/contact-list">
-                        <li>Contact List</li>
-                    </a>
-                </ul>
-            </mat-tab>
-            <mat-tab label="New Loan">
-                <ul>
-                    <a routerLink="/new-credit">
-                        <li>New Loan</li>
-                    </a>
-                </ul>
-            </mat-tab>
-            <mat-tab label="Add New Friends">
-                <ul>
-                    <a routerLink="/add-new-friends">
-                        <li>Add New Friends</li>
-                    </a>
-                </ul>
-            </mat-tab>
-        </mat-tab-group>
-        <h1 class="title">Loan Management System</h1>
-        <button mat-raised-button class="btn" routerLink="/login">Log Out</button>
-    </div>
-</div>
-
 <mat-spinner *ngIf="usersLoading"></mat-spinner>
 <div class="container">
     <form *ngIf="!usersLoading" [formGroup]="newCreditForm">
-        <h3>Open New Loan</h3>
+        <h2>{{'title.openNewLoan' | translate}}</h2>
 
         <mat-form-field>
-            <input type="text" matInput id="loanName" name="loanName" placeholder="Loan Name" required
-                formControlName="loanName">
+            <mat-label>{{'label.loanName' | translate}}</mat-label>
+            <input type="text" matInput id="loanName" name="loanName" placeholder="{{'label.loanName' | translate}}"
+                required formControlName="loanName">
+            <mat-error *ngIf="newCreditForm.controls['loanName'].hasError('required')">
+                Loan name is <strong>required</strong>
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>First Person</mat-label>
-            <input type="text" placeholder="Pick one" aria-label="First Person" matInput formControlName="firstPerson"
-                [matAutocomplete]="auto">
+            <mat-label>{{'label.firstPerson' | translate}}</mat-label>
+            <input type="text" placeholder="{{'label.pickOne' | translate}}" aria-label="First Person" matInput
+                formControlName="firstPerson" [matAutocomplete]="auto">
+            <mat-error *ngIf="newCreditForm.controls['firstPerson'].hasError('required')">
+                First name is <strong>required</strong>
+            </mat-error>
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name"
                     (click)="selectName(option)">
@@ -58,9 +28,12 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Second Person</mat-label>
-            <input type="text" placeholder="Pick one" aria-label="Second Person" matInput formControlName="secondPerson"
-                [matAutocomplete]="auto2">
+            <mat-label>{{'label.secondPerson' | translate}}</mat-label>
+            <input type="text" placeholder="{{'label.pickOne' | translate}}" aria-label="Second Person" matInput
+                formControlName="secondPerson" [matAutocomplete]="auto2">
+            <mat-error *ngIf="newCreditForm.controls['secondPerson'].hasError('required')">
+                Second name is <strong>required</strong>
+            </mat-error>
             <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete">
                 <mat-option *ngFor="let option of filteredOptions2 | async" [value]="option.name"
                     (click)="selectName2(option)">
@@ -70,19 +43,26 @@
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>How much</mat-label>
-            <input type="text" matInput id="howMuch" name="howMuch" placeholder="How much" required
-                formControlName="howMuch">
+            <mat-label>{{'label.howMuch' | translate}}</mat-label>
+            <input type="number" matInput id="howMuch" name="howMuch" placeholder="{{'label.howMuch' | translate}}"
+                required formControlName="howMuch">
+            <mat-error *ngIf="newCreditForm.controls['howMuch'].hasError('required')">
+                How much is <strong>required</strong>
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-            <mat-label>Reason</mat-label>
+            <mat-label>{{'label.reason' | translate}}</mat-label>
             <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
                 cdkAutosizeMaxRows="5" formControlName="reason"></textarea>
+            <mat-error *ngIf="newCreditForm.controls['reason'].hasError('required')">
+                Describe you <strong>reason</strong>
+            </mat-error>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" (click)="onSubmit()"
-            [disabled]="newCreditForm.status === 'INVALID'">Create New Loan
+        <button mat-raised-button color="primary" (click)="createDialog()" (click)="onSubmit()"
+            [disabled]="newCreditForm.status === 'INVALID'">{{'buttons.createNewLoan' | translate}}
         </button>
     </form>
+
 </div>
