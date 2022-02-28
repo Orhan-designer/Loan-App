@@ -7,11 +7,11 @@
             <mat-label>{{'label.email' | translate}}</mat-label>
             <input type="text" matInput class="form-control" id="email" name="email" formControlName="email">
             <mat-error *ngIf="userForm.controls['email'].hasError('required')">
-                Email is <strong>required</strong>
+                {{'errors.emailRequired' | translate}}
             </mat-error>
             <mat-error
                 *ngIf="userForm.controls['email'].hasError('email') && !userForm.controls['email'].hasError('required')">
-                Please enter a valid email address
+                {{'errors.emailIsValid' | translate}}
             </mat-error>
         </mat-form-field>
 
@@ -20,7 +20,7 @@
             <input type="password" matInput class="form-control" id="password" name="password" required
                 formControlName="password">
             <mat-error *ngIf="userForm.controls['password'].hasError('required')">
-                Password is <strong>required</strong>
+                {{'errors.passwordRequired' | translate}}
             </mat-error>
         </mat-form-field>
 

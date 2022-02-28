@@ -8,7 +8,8 @@
         "contactList": "Список контактов",
         "loans": "Долги",
         "createNewLoan": "Открыть новый долг",
-        "addNewFriend": "Добавить друга"
+        "addNewFriend": "Добавить друга",
+        "delete": "Удалить"
     },
     "title": {
         "registerForm": "Форма регистрации",
@@ -48,5 +49,18 @@
         "fullName": "Имя",
         "city": "Город",
         "phone": "Номер телефона"
+    },
+    "errors": {
+        "emailRequired": "Электронная почта обязательна",
+        "emailIsValid": "Пожалуйста, введите действительный адрес электронной почты",
+        "passwordRequired": "Необходим пароль",
+        "nameRequired": "Укажите имя",
+        "cityRequired": "Укажите город",
+        "phoneRequired": "Требуется номер телефона",
+        "loanNameRequired": "Введите имя займа, которое хотите открыть",
+        "firstNameRequired": "Требуется имя",
+        "secondNameRequired": "Требуется второе имя",
+        "howMuchRequired": "Сколько хотите занять?",
+        "reasonRequired": "Опишите причину займа"
     }
 }

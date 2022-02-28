@@ -2,7 +2,7 @@ export class Users {
     constructor(
         public id: number,
         public fullName: string,
-        public email: any,
+        public email: string,
         public city: string,
         public phone: number,
     ) {}

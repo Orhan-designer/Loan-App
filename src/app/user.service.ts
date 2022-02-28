@@ -32,7 +32,7 @@ export class UserService {
   }
 
   deleteUser(id: Users) {
-    const url = `${this.friendService.getFriendsById}/${id}`;
+    const url = `${this.friendService}/${id}`;
 
     return this.http.delete<Users>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted friend id=${id}`)),

@@ -7,7 +7,7 @@
             <input type="text" matInput id="firstName" name="firstName" required formControlName="fullName"
                 placeholder="{{'ngContainer.fullName' | translate}}">
             <mat-error *ngIf="newFriendForm.controls['fullName'].hasError('required')">
-                Name is <strong>required</strong>
+                {{'errors.nameRequired' | translate}}
             </mat-error>
         </mat-form-field>
 
@@ -16,11 +16,11 @@
             <input type="email" matInput id="email" name="email" placeholder="john@example.com" required
                 formControlName="email">
             <mat-error *ngIf="newFriendForm.controls['email'].hasError('required')">
-                Email is <strong>required</strong>
+                {{'errors.emailRequired' | translate}}
             </mat-error>
             <mat-error
                 *ngIf="newFriendForm.controls['email'].hasError('email') && !newFriendForm.controls['email'].hasError('required')">
-                Please enter a valid email address
+                {{'errors.emailIsValid' | translate}}
             </mat-error>
         </mat-form-field>
 
@@ -29,7 +29,7 @@
             <input type="text" matInput id="city" name="city" placeholder="{{'ngContainer.city' | translate}}" required
                 formControlName="city">
             <mat-error *ngIf="newFriendForm.controls['city'].hasError('required')">
-                City is <strong>required</strong>
+                {{'errors.cityRequired' | translate}}
             </mat-error>
         </mat-form-field>
 
@@ -38,7 +38,7 @@
             <input type="number" matInput id="phone" name="phone" placeholder="{{'ngContainer.phone' | translate}}"
                 required formControlName="phone">
             <mat-error *ngIf="newFriendForm.controls['phone'].hasError('required')">
-                Phone is <strong>required</strong>
+                {{'errors.phoneRequired' | translate}}
             </mat-error>
         </mat-form-field>
 

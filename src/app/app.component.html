@@ -1,6 +1,8 @@
 <div class="header" *ngIf="hasHeader">
     <div class="header_subcontainer">
 
+        <h1 class="title">{{'title.loanManagementSystem' | translate}}</h1>
+
         <ul>
             <a routerLink="/loans">
                 <li>{{'buttons.loans' | translate}}</li>
@@ -19,15 +21,14 @@
             </a>
         </ul>
 
-        <ul class="navbar-nav">
+        <!-- <ul class="navbar-nav">
             <li>
                 <a routerLink="/register" routerLinkActive="active">Register</a>
             </li>
             <li>
                 <a routerLink="/login" routerLinkActive="active">Login</a>
             </li>
-        </ul>
-        <h1 class="title">{{'title.loanManagementSystem' | translate}}</h1>
+        </ul> -->
 
         <button mat-raised-button routerLink="/login">{{'buttons.logOut' | translate}}</button>
 

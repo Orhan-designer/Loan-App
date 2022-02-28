@@ -10,24 +10,20 @@ export class NewFriendsService {
 
   constructor(private http: HttpClient) { }
 
-  getFriends(friend: {}) {
-    return this.http.get<any>(this._newFriendsUrl, friend)
-  }
-
   postFriends(friend: {}) {
-    return this.http.post<any>(this._newFriendsUrl, friend);
-  }
-
-  putFriends(friend: {}) {
-    return this.http.put<any>(this._newFriendsUrl, friend)
-  }
+    return this.http.post<any>(this._newFriendsUrl, friend); //отправляем пост запрос на бэк
+  };
 
   getFriendsById(friend: {}) {
-    return this.http.get<any>(this._newFriendsUrl2, friend)
-  }
+    return this.http.get<any>(this._newFriendsUrl2, friend); //получаем друзей с бэка по id
+  };
 
-  deleteFriends(friend: {}) {
-    return this.http.delete<any>(this._newFriendsUrl2, friend)
-  }
+  putFriends(friend: {}) {
+    return this.http.put<any>(this._newFriendsUrl, friend); //обновляем данные друзей в бэк
+  };
+
+  deleteFriendsById(friend: {}) {
+    return this.http.delete<any>(this._newFriendsUrl2, friend); //удаляем друга из бэка по id
+  };
 
 }

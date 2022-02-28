@@ -8,7 +8,8 @@
         "contactList": "Contact List",
         "loans": "Loans",
         "createNewLoan": "Create New Loan",
-        "addNewFriend": "Add New Friend"
+        "addNewFriend": "Add New Friend",
+        "delete": "Delete"
     },
     "title": {
         "registerForm": "Register Form",
@@ -34,7 +35,6 @@
         "enterYouLogin": "Enter you login",
         "enterYouPassword": "Enter you password",
         "pickOne": "Pick One"
-        
     },
     "span": {
         "userName": "User Name"
@@ -49,5 +49,18 @@
         "fullName": "Full Name",
         "city": "City",
         "phone": "Phone"
+    },
+    "errors": {
+        "emailRequired": "Email is required",
+        "emailIsValid": "Please enter a valid email address",
+        "passwordRequired": "Password is required",
+        "nameRequired": "Name is required",
+        "cityRequired": "City is required",
+        "phoneRequired": "Phone is required",
+        "loanNameRequired": "Loan name is required",
+        "firstNameRequired": "First name is required",
+        "secondNameRequired": "Second name is required",
+        "howMuchRequired": "How much is required",
+        "reasonRequired": "Describe you reason"
     }
 }

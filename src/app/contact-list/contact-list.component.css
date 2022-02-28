@@ -24,3 +24,11 @@ input {
 th {
   font-size: 16px;
 }
+
+.mat-fab {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

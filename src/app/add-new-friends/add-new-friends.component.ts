@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Users } from '../users';
 import { UserService } from '../user.service';
@@ -38,7 +38,7 @@ export class AddNewFriendsComponent implements OnInit {
 
   onSubmit(): void {
     this.addNewFriend = this.newFriendForm.value;
-    this._friendService.getFriends(this.addNewFriend)
+    this._friendService.postFriends(this.addNewFriend)
       .subscribe(
         res => this.addNewFriend = res,
         err => console.log(err)
