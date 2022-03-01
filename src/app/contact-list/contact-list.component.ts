@@ -5,19 +5,19 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { UsersMemoryDataService } from '../users-memory-data.service';
 import { TestService } from '../services/test.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Users } from 'Loan-App/src/app/users';
+import { Users } from '../users';
 
 @Component({
   selector: 'app-contact-list',
-  templateUrl: './contact-list.component.html',
-  styleUrls: ['./contact-list.component.css']
+  templateUrl: '../contact-list/contact-list.component.html',
+  styleUrls: ['../contact-list/contact-list.component.css']
 })
 export class ContactListComponent implements OnInit {
 
-  hasHeader: boolean = true;
-  displayedColumns: string[] = ['id', 'fullName', 'email', 'city', 'phone', 'delete'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email'];
   dataSource = new MatTableDataSource(this.usersData.users);
   usersLoading: boolean = true;
+  id: any = {};
 
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -28,7 +28,6 @@ export class ContactListComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
   }
 
   announceSortChange(sortState: Sort) {
@@ -46,7 +45,15 @@ export class ContactListComponent implements OnInit {
     private translateService: TranslateService) { }
 
   ngOnInit(): void {
-    // console.log(this.testService.getFriends())
+    if(this.testService.userInfo._id) {
+      this.id = this.testService.userInfo._id;
+    } else {
+      this.id = JSON.parse(localStorage.getItem('user'))._id;
+    }
+    this.testService.getFriends(this.id).subscribe((res) => {
+      this.dataSource = res;
+      this.usersLoading = false;
+    })
   }
 
   public selectLanguage(event: any) {
@@ -55,10 +62,10 @@ export class ContactListComponent implements OnInit {
 
   delete(user: Users): void {
     const index = this.dataSource.data.findIndex((el) => el.id === user.id);
-    
+
     this.dataSource.data.splice(index, 1);
     console.log(this.dataSource.data);
     this.dataSource._updateChangeSubscription();
-    
+
   }
 }

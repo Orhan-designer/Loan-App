@@ -5,6 +5,7 @@ import { AuthService } from '../auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 import { TranslateService } from '@ngx-translate/core';
+import { TestService } from '../services/test.service';
 
 @Component({
   selector: 'app-user-registration',
@@ -21,14 +22,18 @@ export class UserRegistrationComponent implements OnInit {
     private dialog: MatDialog,
     private translateService: TranslateService,
     private fb: FormBuilder,
+    private testService: TestService
   ) { }
 
   ngOnInit(): void { }
 
   userForm = this.fb.group({
     email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$')]),
-    password: new FormControl('', [Validators.required])
-  })
+    password: new FormControl('', [Validators.required]),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    isGhost: false
+  });
 
   newUser = this.userForm.value;
 
@@ -36,10 +41,14 @@ export class UserRegistrationComponent implements OnInit {
     this.newUser = this.userForm.value;
     this._auth.registerUser(this.newUser)
       .subscribe(
-        res => console.log(res),
+        res => {
+          console.log(res);
+          this.testService.setUser(res);
+          localStorage.setItem('user', JSON.stringify(res));
+          this.router.navigate([`/contact-list`])
+        },
         err => console.log(err)
       )
-    this.router.navigate([`/contact-list`])
     console.log(this.newUser);
   }
 

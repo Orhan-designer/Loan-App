@@ -5,9 +5,7 @@ import { Users } from './users';
   providedIn: 'root'
 })
 export class UsersMemoryDataService {
-  // users = [
-  //   {id: 1}
-  // ];
+
   users: any[] = [];
 
   createDb() {

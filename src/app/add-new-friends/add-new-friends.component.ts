@@ -9,8 +9,8 @@ import { PopUpComponent } from '../pop-up/pop-up.component';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-add-new-friends',
-  templateUrl: './add-new-friends.component.html',
-  styleUrls: ['./add-new-friends.component.css']
+  templateUrl: '../add-new-friends/add-new-friends.component.html',
+  styleUrls: ['../add-new-friends/add-new-friends.component.css']
 })
 export class AddNewFriendsComponent implements OnInit {
 
@@ -27,18 +27,17 @@ export class AddNewFriendsComponent implements OnInit {
   ngOnInit(): void {}
 
   newFriendForm = this.fb.group({
-    fullName: new FormControl('', [Validators.required]),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$')]),
-    city: new FormControl('', [Validators.required]),
-    phone: new FormControl('', [Validators.required]),
   });
 
   addNewFriend = this.newFriendForm.value;
-  model = new Users(0, '', '', '', 0);
+  model = new Users(0, '', '', '',);
 
   onSubmit(): void {
     this.addNewFriend = this.newFriendForm.value;
-    this._friendService.postFriends(this.addNewFriend)
+    this._friendService.postFriend(this.addNewFriend)
       .subscribe(
         res => this.addNewFriend = res,
         err => console.log(err)

@@ -1,45 +1,67 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class TestService {
 
-    loansList: any[] = [
-        { loanName: 'Test', firstPerson: { name: 'Andrey', id: 1 }, secondPerson: { name: 'Andrey', id: 1 }, howMuch: '50', reason: 'party', date: '11/10/2022' },
-        { loanName: 'loan', firstPerson: { name: 'Andrey', id: 1 }, secondPerson: { name: 'Orhan', id: 2 }, howMuch: '150', reason: 'home', date: '12/10/2022' }
-    ];
+  private serverUrl = "http://localhost:3000/api/";
 
-    user: any = {
-        friends: [1, 3]
-    }
+  loansList: any[] = [
+    { loanName: 'Test', firstPerson: { name: 'Andrey', id: 1 }, secondPerson: { name: 'Andrey', id: 1 }, howMuch: '50', reason: 'party', date: '11/10/2022' },
+    { loanName: 'loan', firstPerson: { name: 'Andrey', id: 1 }, secondPerson: { name: 'Orhan', id: 2 }, howMuch: '150', reason: 'home', date: '12/10/2022' }
+  ];
 
-    usersList: any[] = [
-        { name: 'Andrey', id: 1 },
-        { name: 'Orhan', id: 2 },
-        { name: 'Valeh', id: 3 },
-        { name: 'Dima', id: 4 },
-        { name: 'Nikita', id: 5 },
-    ];
+  user: any = {}
 
-    get loans() {
-        return this.loansList;
-    }
+  usersList: any[] = [
+    { name: 'Andrey', id: 1 },
+    { name: 'Orhan', id: 2 },
+    { name: 'Valeh', id: 3 },
+    { name: 'Dima', id: 4 },
+    { name: 'Nikita', id: 5 },
+  ];
 
-    get users() {
-        return this.usersList;
-    }
+  get loans() {
+    return this.loansList;
+  }
 
-    constructor() { }
+  get users() {
+    return this.usersList;
+  }
 
-    addLoan(loan: any): void {
-        this.loansList.push(loan); //call api post
-    }
+  get userInfo() {
+    return this.user;
+  }
 
-    getFriends() {
-        return this.users.filter((el) => this.user.friends.includes(el.id)) //call api to get friends
-        //коллекция юзеров
-        //твой профиль-друзья
-        //фильтруешь
-    }
+  constructor(private http: HttpClient) { }
+
+  addLoan(loan: any): void {
+    this.loansList.push(loan); //call api post
+  }
+
+  setUser(user: any) {
+    console.log(user)
+    this.user = user;
+  }
+
+  getFriends(id: string) {
+    return this.http.get<any>(this.serverUrl + 'friends/' + id)
+    //коллекция юзеров
+    //твой профиль-друзья
+    //фильтруешь
+  }
+
+  getUsers() {
+    return this.http.get<any>(this.serverUrl + 'users/list');
+  }
+
+  getLoans(id) {
+    return this.http.get<any>(this.serverUrl + 'loans/' + id);
+  }
+
+  getFilteredLoans(data) {
+    return this.http.post<any>(this.serverUrl + 'loans/user', data);
+  }
 }

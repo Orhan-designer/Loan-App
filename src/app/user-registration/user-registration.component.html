@@ -24,7 +24,25 @@
             </mat-error>
         </mat-form-field>
 
-        <button type="button" mat-raised-button (click)="createDialog()" (click)="registerUser()" routerLink="/profile"
+        <mat-form-field>
+            <mat-label>{{'label.firstName' | translate}}</mat-label>
+            <input type="text" matInput class="form-control" id="firstName" name="firstName" required
+                formControlName="firstName">
+            <mat-error *ngIf="userForm.controls['firstName'].hasError('required')">
+                {{'errors.firstNameRequired' | translate}}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>{{'label.lastName' | translate}}</mat-label>
+            <input type="text" matInput class="form-control" id="lastName" name="lastName" required
+                formControlName="lastName">
+            <mat-error *ngIf="userForm.controls['lastName'].hasError('required')">
+                {{'errors.lastNameRequired' | translate}}
+            </mat-error>
+        </mat-form-field>
+
+        <button type="button" mat-raised-button routerLink="/contact-list" (click)="createDialog()" (click)="registerUser()"
             [disabled]="!userForm.valid">{{'buttons.registration' | translate}}
         </button>
 

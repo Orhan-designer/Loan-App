@@ -3,11 +3,12 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import { TestService } from '../services/test.service';
 
 @Component({
   selector: 'app-user-login',
-  templateUrl: './user-login.component.html',
-  styleUrls: ['./user-login.component.css']
+  templateUrl: '../user-login/user-login.component.html',
+  styleUrls: ['../user-login/user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
 
@@ -15,7 +16,8 @@ export class UserLoginComponent implements OnInit {
     private _auth: AuthService,
     private router: Router,
     private translateService: TranslateService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private testService: TestService
   ) { }
 
   ngOnInit(): void {}
@@ -31,10 +33,14 @@ export class UserLoginComponent implements OnInit {
     this.newUser = this.userForm.value;
     this._auth.loginUser(this.newUser)
       .subscribe(
-        res => console.log(res),
+        res => {
+          console.log(res)
+          this.testService.setUser(res);
+          localStorage.setItem('user', JSON.stringify(res));
+          this.router.navigate([`/contact-list`]);
+        },
         err => console.log(err)
       );
-    this.router.navigate([`/contact-list`]);
   };
 
   public selectLanguage(event: any) {

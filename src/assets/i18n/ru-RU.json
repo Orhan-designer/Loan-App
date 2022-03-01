@@ -34,7 +34,9 @@
         "search": "Поиск",
         "enterYouLogin": "Введите ваш логин",
         "enterYouPassword": "Введите ваш пароль",
-        "pickOne": "Выберите пользователя"
+        "pickOne": "Выберите пользователя",
+        "firstName": "Имя",
+        "lastName": "Фамилия"
     },
     "span": {
         "userName": "Имя пользователя"
@@ -61,6 +63,7 @@
         "firstNameRequired": "Требуется имя",
         "secondNameRequired": "Требуется второе имя",
         "howMuchRequired": "Сколько хотите занять?",
-        "reasonRequired": "Опишите причину займа"
+        "reasonRequired": "Опишите причину займа",
+        "lastNameRequired": "Требуется фамилия"
     }
 }

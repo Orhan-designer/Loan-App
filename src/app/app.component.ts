@@ -3,8 +3,8 @@ import { Router, NavigationStart } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: '../app/app.component.html',
+  styleUrls: ['../app/app.component.css']
 })
 
 export class AppComponent {
@@ -33,5 +33,10 @@ export class AppComponent {
 
   public selectLanguage(event: any) {
     this.translateService.use(event.target.value)
+  }
+
+  logout() {
+    localStorage.removeItem('user');
+    this.router.navigate([`/login`])
   }
 }

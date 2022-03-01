@@ -14,32 +14,41 @@ export class LoansComponent implements OnInit {
   loans: any[] = [];
   users: any[] = [];
 
+  id: string;
+
   constructor(
     private testService: TestService,
     private translateService: TranslateService
   ) { }
 
   ngOnInit(): void {
+    if(this.testService.userInfo._id) {
+      this.id = this.testService.userInfo._id;
+    } else {
+      this.id = JSON.parse(localStorage.getItem('user'))._id;
+    }
     this.getLoans();
   }
 
   selectUser(user: any) {
     console.log(user)
-    //call api and send user
-    this.loans = this.loans.filter((el) => {
-      return el.secondPerson.id === user.id;
+    this.isLoansLoaded = false;
+    this.testService.getFilteredLoans({myId: this.id, friendId: user.id}).subscribe((res) => {
+      this.loans = res;
+      // console.log(this.loans)
+      this.isLoansLoaded = true;
     })
   }
 
   getLoans() {
-    //call api to get all loans get
-    //call api to get all users
-    setTimeout(() => {
-      this.loans = this.testService.loans;
-      this.users = this.testService.users;
+    this.testService.getLoans(this.id).subscribe((res) => {
+      this.loans = res;
       // console.log(this.loans)
       this.isLoansLoaded = true;
-    }, 500);
+    })
+    this.testService.getUsers().subscribe((res) => {
+      this.users = res;
+    })
   }
 
   public selectLanguage(event: any) {

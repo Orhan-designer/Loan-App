@@ -34,7 +34,9 @@
         "search": "Search",
         "enterYouLogin": "Enter you login",
         "enterYouPassword": "Enter you password",
-        "pickOne": "Pick One"
+        "pickOne": "Pick One",
+        "firstName": "First Name",
+        "lastName": "Last Name"
     },
     "span": {
         "userName": "User Name"
@@ -61,6 +63,7 @@
         "firstNameRequired": "First name is required",
         "secondNameRequired": "Second name is required",
         "howMuchRequired": "How much is required",
-        "reasonRequired": "Describe you reason"
+        "reasonRequired": "Describe you reason",
+        "lastNameRequired": "Last name is required"
     }
 }

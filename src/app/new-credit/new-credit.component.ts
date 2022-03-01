@@ -8,7 +8,7 @@ import { LoanServiceService } from '../loan-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 import { TranslateService } from '@ngx-translate/core';
-
+import { UserService } from '@app/user.service';
 @Component({
   selector: 'app-new-credit',
   templateUrl: './new-credit.component.html',
@@ -24,6 +24,8 @@ export class NewCreditComponent implements OnInit {
   name: any;
   name2: any;
 
+  userId: string;
+
   filteredOptions!: Observable<any[]>;
   filteredOptions2!: Observable<any[]>;
 
@@ -35,22 +37,29 @@ export class NewCreditComponent implements OnInit {
     reason: ['', Validators.required],
   });
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     public fb: FormBuilder,
     private _ngZone: NgZone,
     private testService: TestService,
     private _loan: LoanServiceService,
     private dialog: MatDialog,
-    private translateService: TranslateService) { }
+    private translateService: TranslateService,
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
+    if (this.testService.userInfo._id) {
+      this.userId = this.testService.userInfo._id;
+    } else {
+      this.userId = JSON.parse(localStorage.getItem('user'))._id;
+    }
     this.getUsers();
   }
 
   getUsers() {
-    //call api to get all users
-    setTimeout(() => {
-      this.options = this.testService.users;
+    this.testService.getUsers().subscribe((res) => {
+      this.options = res;
       this.usersLoading = false;
       this.filteredOptions = this.newCreditForm.valueChanges.pipe(
         startWith(''),
@@ -64,10 +73,11 @@ export class NewCreditComponent implements OnInit {
           return this._filter(value ? value.secondPerson : '')
         }),
       );
-    }, 500)
+    })
   }
 
   selectName(option: any) {
+    console.log(option)
     this.name = option;
   }
 
@@ -90,15 +100,18 @@ export class NewCreditComponent implements OnInit {
 
   onSubmit(): void {
     this.addNewCredit = this.newCreditForm.value;
-    this._loan.getLoans(this.addNewCredit)
-    .subscribe(
-      res => this.addNewCredit = res,
-      err => console.log(err)
-    );
+    console.log(this.name)
     this.addNewCredit.date = new Date(); // refactor date
     this.addNewCredit.firstPerson = this.name ? this.name : { name: this.addNewCredit.firstPerson, id: null };
     this.addNewCredit.secondPerson = this.name2 ? this.name2 : { name: this.addNewCredit.secondPerson, id: null };
+    this.addNewCredit.userId = this.userId;
     this.testService.addLoan(this.addNewCredit);
+    this._loan.createLoan(this.addNewCredit).subscribe(
+      res => {
+        console.log(res)
+      },
+      err => console.log(err)
+    );
     this.router.navigate([`/loans`])
   }
 
@@ -113,4 +126,38 @@ export class NewCreditComponent implements OnInit {
   public selectLanguage(event: any) {
     this.translateService.use(event.target.value)
   }
+
+  container =
+    `
+  <mat-form-field>
+    <mat-label>{{'label.email' | translate}}</mat-label>
+    <input type="email" matInput id="email" name="email" placeholder="john@example.com" required
+      formControlName="email">
+    <mat-error *ngIf="newFriendForm.controls['email'].hasError('required')">
+      {{'errors.emailRequired' | translate}}
+    </mat-error>
+    <mat-error
+      *ngIf="newFriendForm.controls['email'].hasError('email') && !newFriendForm.controls['email'].hasError('required')">
+        {{'errors.emailIsValid' | translate}}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+            <mat-label>last name</mat-label>
+            <input type="text" matInput id="lastName" name="lastName" placeholder="Last Name" required
+                formControlName="lastName">
+            <mat-error *ngIf="newFriendForm.controls['lastName'].hasError('required')">
+                {{'errors.emailRequired' | translate}}
+            </mat-error>
+        </mat-form-field>
+
+  `
+  openDialog() {
+    this.dialog.open(PopUpComponent, {
+      data: {
+        container: this.container
+      },
+    });
+  }
 }
+

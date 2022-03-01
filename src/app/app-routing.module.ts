@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'loans', component: LoansComponent, canActivate: [UserProfileGuard] },
   { path: 'contact-list', component: ContactListComponent, canActivate: [UserProfileGuard] },
   { path: 'new-credit', component: NewCreditComponent, canActivate: [UserProfileGuard] },
-  { path: 'add-new-friends', component: AddNewFriendsComponent, canActivate: [UserProfileGuard] }
+  { path: 'add-new-friend', component: AddNewFriendsComponent, canActivate: [UserProfileGuard] }
 ];
 
 @NgModule({

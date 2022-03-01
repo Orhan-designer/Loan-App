@@ -36,6 +36,10 @@ mat-label {
   margin: 30px auto;
 }
 
-input[type="text"] {
-  color: white;
+.example-button-container {
+  text-align: right;
+}
+
+.btn-container {
+  text-align: right;
 }

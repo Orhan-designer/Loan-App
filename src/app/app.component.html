@@ -16,7 +16,7 @@
                 <li>{{'buttons.newLoan' | translate}}</li>
             </a>
 
-            <a routerLink="/add-new-friends">
+            <a routerLink="/add-new-friend">
                 <li>{{'buttons.addNewFriend' | translate}}</li>
             </a>
         </ul>
@@ -30,12 +30,15 @@
             </li>
         </ul> -->
 
-        <button mat-raised-button routerLink="/login">{{'buttons.logOut' | translate}}</button>
-
         <select (change)="selectLanguage($event)" class="language-picker">
             <option value="en-US">English</option>
             <option value="ru-RU">Russian</option>
         </select>
+
+        <button mat-raised-button routerLink="/login">
+            Log out
+            <span class='material-icons'>logout</span>
+        </button>
     </div>
 </div>
 

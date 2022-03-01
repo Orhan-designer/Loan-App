@@ -9,6 +9,6 @@ export class UserProfileGuard implements CanActivate {
     constructor() { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        return confirm('Are you sure you want to leave this page?');
+        return true;
     };
 }

@@ -1,15 +1,14 @@
 <div class="container">
     <form [formGroup]="newFriendForm">
         <h3>{{'title.addNewFriend' | translate}}</h3>
-        <mat-form-field>
-            <!-- <label for="firstName"><i class="fa fa-user"></i> Full Name</label> -->
+        <!-- <mat-form-field>
             <mat-label>{{'ngContainer.fullName' | translate}}</mat-label>
             <input type="text" matInput id="firstName" name="firstName" required formControlName="fullName"
                 placeholder="{{'ngContainer.fullName' | translate}}">
             <mat-error *ngIf="newFriendForm.controls['fullName'].hasError('required')">
                 {{'errors.nameRequired' | translate}}
             </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
 
         <mat-form-field>
             <mat-label>{{'label.email' | translate}}</mat-label>
@@ -25,20 +24,20 @@
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>{{'ngContainer.city' | translate}}</mat-label>
-            <input type="text" matInput id="city" name="city" placeholder="{{'ngContainer.city' | translate}}" required
-                formControlName="city">
-            <mat-error *ngIf="newFriendForm.controls['city'].hasError('required')">
-                {{'errors.cityRequired' | translate}}
+            <mat-label>first name</mat-label>
+            <input type="text" matInput id="firstName" name="firstName" placeholder="First Name" required
+                formControlName="firstName">
+            <mat-error *ngIf="newFriendForm.controls['firstName'].hasError('required')">
+                {{'errors.emailRequired' | translate}}
             </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>{{'ngContainer.phone' | translate}}</mat-label>
-            <input type="number" matInput id="phone" name="phone" placeholder="{{'ngContainer.phone' | translate}}"
-                required formControlName="phone">
-            <mat-error *ngIf="newFriendForm.controls['phone'].hasError('required')">
-                {{'errors.phoneRequired' | translate}}
+            <mat-label>last name</mat-label>
+            <input type="text" matInput id="lastName" name="lastName" placeholder="Last Name" required
+                formControlName="lastName">
+            <mat-error *ngIf="newFriendForm.controls['lastName'].hasError('required')">
+                {{'errors.emailRequired' | translate}}
             </mat-error>
         </mat-form-field>
 
