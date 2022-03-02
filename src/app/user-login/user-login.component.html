@@ -26,6 +26,10 @@
 
         <button type="button" mat-raised-button (click)="loginUser()" routerLink="/contact-list"
             [disabled]="!userForm.valid">{{'buttons.logIn' | translate}}</button>
+
+        <button routerLink="/register" mat-raised-button (click)="registerUser()">
+            Register
+        </button>
     </div>
 
 </form>

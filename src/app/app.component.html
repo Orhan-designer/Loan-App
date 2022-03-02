@@ -3,39 +3,41 @@
 
         <h1 class="title">{{'title.loanManagementSystem' | translate}}</h1>
 
-        <ul>
-            <a routerLink="/loans">
-                <li>{{'buttons.loans' | translate}}</li>
-            </a>
+        <div class="menu-btn">
+            <ul class="navbar">
+                <a routerLink="/loans">
+                    <li>{{'buttons.loans' | translate}}</li>
+                </a>
 
-            <a routerLink="/contact-list">
-                <li>{{'buttons.contactList' | translate}}</li>
-            </a>
+                <a routerLink="/contact-list">
+                    <li>{{'buttons.contactList' | translate}}</li>
+                </a>
 
-            <a routerLink="/new-credit">
-                <li>{{'buttons.newLoan' | translate}}</li>
-            </a>
+                <a routerLink="/new-credit">
+                    <li>{{'buttons.newLoan' | translate}}</li>
+                </a>
 
-            <a routerLink="/add-new-friend">
-                <li>{{'buttons.addNewFriend' | translate}}</li>
-            </a>
+                <a routerLink="/add-new-friend">
+                    <li>{{'buttons.addNewFriend' | translate}}</li>
+                </a>
+            </ul>
+        </div>
+
+        <ul class="navbar-nav">
+            <li>
+                <a routerLink="/register" *ngIf="!authService.loggedIn()">Register</a>
+            </li>
+            <li>
+                <a routerLink="/login" *ngIf="!authService.loggedIn()">Login</a>
+            </li>
         </ul>
-
-        <!-- <ul class="navbar-nav">
-            <li>
-                <a routerLink="/register" routerLinkActive="active">Register</a>
-            </li>
-            <li>
-                <a routerLink="/login" routerLinkActive="active">Login</a>
-            </li>
-        </ul> -->
 
         <select (change)="selectLanguage($event)" class="language-picker">
             <option value="en-US">English</option>
             <option value="ru-RU">Russian</option>
         </select>
 
-        <button mat-raised-button routerLink="/login">
+        <button *ngIf="authService.loggedIn()" mat-raised-button routerLink="/login">
             Log out
             <span class='material-icons'>logout</span>
         </button>

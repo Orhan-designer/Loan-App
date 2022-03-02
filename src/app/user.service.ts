@@ -22,7 +22,7 @@ export class UserService {
   }
 
   addUser(user: Users) {
-    user.id = this.usersData.users.length + 1; //добавляем пользователей начиная с айди номер 1
+    // user.id = this.usersData.users.length + 1; //добавляем пользователей начиная с айди номер 1
     this.usersData.users.push(user);
     return of(user);
   }

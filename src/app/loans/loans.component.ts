@@ -35,7 +35,6 @@ export class LoansComponent implements OnInit {
     this.isLoansLoaded = false;
     this.testService.getFilteredLoans({myId: this.id, friendId: user.id}).subscribe((res) => {
       this.loans = res;
-      // console.log(this.loans)
       this.isLoansLoaded = true;
     })
   }
@@ -43,7 +42,6 @@ export class LoansComponent implements OnInit {
   getLoans() {
     this.testService.getLoans(this.id).subscribe((res) => {
       this.loans = res;
-      // console.log(this.loans)
       this.isLoansLoaded = true;
     })
     this.testService.getUsers().subscribe((res) => {

@@ -14,7 +14,7 @@ export class UsersMemoryDataService {
 
   genId(users: Users[]): any {
     console.log(users);
-    return users.length > 0 ? Math.max(...users.map(user => user.id)) + 1 : 0;
+    // return users.length > 0 ? Math.max(...users.map(user => user.id)) + 1 : 0;
   }
 
   constructor() { }

@@ -33,7 +33,7 @@ export class UserRegistrationComponent implements OnInit {
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     isGhost: false
-  });
+  })
 
   newUser = this.userForm.value;
 
@@ -45,7 +45,6 @@ export class UserRegistrationComponent implements OnInit {
           console.log(res);
           this.testService.setUser(res);
           localStorage.setItem('user', JSON.stringify(res));
-          this.router.navigate([`/contact-list`])
         },
         err => console.log(err)
       )

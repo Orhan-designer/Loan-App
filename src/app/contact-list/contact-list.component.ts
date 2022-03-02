@@ -45,7 +45,7 @@ export class ContactListComponent implements OnInit {
     private translateService: TranslateService) { }
 
   ngOnInit(): void {
-    if(this.testService.userInfo._id) {
+    if (this.testService.userInfo._id) {
       this.id = this.testService.userInfo._id;
     } else {
       this.id = JSON.parse(localStorage.getItem('user'))._id;
@@ -60,12 +60,4 @@ export class ContactListComponent implements OnInit {
     this.translateService.use(event.target.value)
   }
 
-  delete(user: Users): void {
-    const index = this.dataSource.data.findIndex((el) => el.id === user.id);
-
-    this.dataSource.data.splice(index, 1);
-    console.log(this.dataSource.data);
-    this.dataSource._updateChangeSubscription();
-
-  }
 }

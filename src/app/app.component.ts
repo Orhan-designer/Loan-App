@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from './auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: '../app/app.component.html',
@@ -14,7 +15,8 @@ export class AppComponent {
 
   constructor(
     private translateService: TranslateService,
-    private router: Router
+    private router: Router,
+    public authService: AuthService
   ) {
     this.router.events.forEach((event: any) => { //скрываем header в /register и /login
       if (event instanceof NavigationStart) {
@@ -37,6 +39,6 @@ export class AppComponent {
 
   logout() {
     localStorage.removeItem('user');
-    this.router.navigate([`/login`])
+    this.router.navigate([`/login`]);
   }
 }

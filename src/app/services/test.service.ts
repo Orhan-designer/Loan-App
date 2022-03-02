@@ -13,7 +13,7 @@ export class TestService {
     { loanName: 'loan', firstPerson: { name: 'Andrey', id: 1 }, secondPerson: { name: 'Orhan', id: 2 }, howMuch: '150', reason: 'home', date: '12/10/2022' }
   ];
 
-  user: any = {}
+  user: any = {};
 
   usersList: any[] = [
     { name: 'Andrey', id: 1 },

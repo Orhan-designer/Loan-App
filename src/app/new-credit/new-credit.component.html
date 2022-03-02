@@ -31,11 +31,6 @@
             <mat-label>{{'label.secondPerson' | translate}}</mat-label>
             <input type="text" placeholder="{{'label.pickOne' | translate}}" aria-label="Second Person" matInput
                 formControlName="secondPerson" [matAutocomplete]="auto2">
-                
-            <div class="btn-container">
-                <button (click)="openDialog()" class="right">+</button>
-            </div>
-
             <mat-error *ngIf="newCreditForm.controls['secondPerson'].hasError('required')">
                 {{'errors.secondNameRequired' | translate}}
             </mat-error>
@@ -46,7 +41,6 @@
                 </mat-option>
             </mat-autocomplete>
         </mat-form-field>
-
 
         <mat-form-field>
             <mat-label>{{'label.howMuch' | translate}}</mat-label>

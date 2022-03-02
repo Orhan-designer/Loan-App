@@ -6,21 +6,21 @@ import { LoansComponent } from './loans/loans.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { NewCreditComponent } from './new-credit/new-credit.component';
 import { AddNewFriendsComponent } from './add-new-friends/add-new-friends.component';
-import { UserProfileGuard } from './user-profile.guard';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/register', pathMatch: 'full' },
   { path: 'register', component: UserRegistrationComponent },
-  { path: 'login', component: UserLoginComponent, canActivate: [UserProfileGuard] },
-  { path: 'loans', component: LoansComponent, canActivate: [UserProfileGuard] },
-  { path: 'contact-list', component: ContactListComponent, canActivate: [UserProfileGuard] },
-  { path: 'new-credit', component: NewCreditComponent, canActivate: [UserProfileGuard] },
-  { path: 'add-new-friend', component: AddNewFriendsComponent, canActivate: [UserProfileGuard] }
+  { path: 'login', component: UserLoginComponent },
+  { path: 'loans', component: LoansComponent, canActivate: [AuthGuard] },
+  { path: 'contact-list', component: ContactListComponent, canActivate: [AuthGuard] },
+  { path: 'new-credit', component: NewCreditComponent, canActivate: [AuthGuard] },
+  { path: 'add-new-friend', component: AddNewFriendsComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [UserProfileGuard]
+  providers: []
 })
 export class AppRoutingModule { }

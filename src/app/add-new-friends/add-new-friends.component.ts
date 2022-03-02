@@ -7,6 +7,7 @@ import { NewFriendsService } from '../new-friends.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 import { TranslateService } from '@ngx-translate/core';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-add-new-friends',
   templateUrl: '../add-new-friends/add-new-friends.component.html',
@@ -33,14 +34,20 @@ export class AddNewFriendsComponent implements OnInit {
   });
 
   addNewFriend = this.newFriendForm.value;
-  model = new Users(0, '', '', '',);
+  model = new Users('', '', '', );
 
   onSubmit(): void {
     this.addNewFriend = this.newFriendForm.value;
-    this._friendService.postFriend(this.addNewFriend)
+    this._friendService.getFriends(this.addNewFriend)
       .subscribe(
         res => this.addNewFriend = res,
-        err => console.log(err)
+        err => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 401) {
+              this.router.navigate(['/register']);
+            }
+          }
+        }
       );
     this.router.navigate([`/contact-list`]);
     this.userService.addUser(this.addNewFriend as Users)

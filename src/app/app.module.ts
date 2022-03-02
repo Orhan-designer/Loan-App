@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http'
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -32,6 +32,8 @@ import { NewFriendsService } from './new-friends.service';
 import { LoanServiceService } from './loan-service.service';
 import { PopUpComponent } from './pop-up/pop-up.component';
 import { NewCreditComponent } from './new-credit/new-credit.component';
+import { AuthGuard } from './auth.guard';
+import { UserInterceptorService } from './user-interceptor.service';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(httpClient);
@@ -78,7 +80,12 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
         defaultLanguage: 'en-US',
       })
   ],
-  providers: [AuthService, NewFriendsService, LoanServiceService],
+  providers: [AuthService, NewFriendsService, LoanServiceService, AuthGuard,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: UserInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

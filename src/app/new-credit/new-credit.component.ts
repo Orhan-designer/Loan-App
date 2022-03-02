@@ -127,37 +127,5 @@ export class NewCreditComponent implements OnInit {
     this.translateService.use(event.target.value)
   }
 
-  container =
-    `
-  <mat-form-field>
-    <mat-label>{{'label.email' | translate}}</mat-label>
-    <input type="email" matInput id="email" name="email" placeholder="john@example.com" required
-      formControlName="email">
-    <mat-error *ngIf="newFriendForm.controls['email'].hasError('required')">
-      {{'errors.emailRequired' | translate}}
-    </mat-error>
-    <mat-error
-      *ngIf="newFriendForm.controls['email'].hasError('email') && !newFriendForm.controls['email'].hasError('required')">
-        {{'errors.emailIsValid' | translate}}
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-            <mat-label>last name</mat-label>
-            <input type="text" matInput id="lastName" name="lastName" placeholder="Last Name" required
-                formControlName="lastName">
-            <mat-error *ngIf="newFriendForm.controls['lastName'].hasError('required')">
-                {{'errors.emailRequired' | translate}}
-            </mat-error>
-        </mat-form-field>
-
-  `
-  openDialog() {
-    this.dialog.open(PopUpComponent, {
-      data: {
-        container: this.container
-      },
-    });
-  }
 }
 

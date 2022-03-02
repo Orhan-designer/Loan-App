@@ -9,7 +9,7 @@ export class LoanServiceService {
 
   constructor(private http: HttpClient) { }
 
-  createLoan(loan: {}) {
+  createLoan(loan) {
     return this.http.post<any>(this._newLoansUrl, loan);
   }
 
