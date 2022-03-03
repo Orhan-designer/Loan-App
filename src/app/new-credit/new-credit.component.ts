@@ -1,14 +1,15 @@
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map, Observable, startWith, take } from 'rxjs';
 import { TestService } from '../services/test.service';
-import { LoanServiceService } from '../loan-service.service';
+import { LoanServiceService } from '../services/loan-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 import { TranslateService } from '@ngx-translate/core';
-import { UserService } from '@app/user.service';
+import { UserService } from '../services/user.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-new-credit',
   templateUrl: './new-credit.component.html',
@@ -25,6 +26,7 @@ export class NewCreditComponent implements OnInit {
   name2: any;
 
   userId: string;
+  myId: string;
 
   filteredOptions!: Observable<any[]>;
   filteredOptions2!: Observable<any[]>;
@@ -45,10 +47,12 @@ export class NewCreditComponent implements OnInit {
     private _loan: LoanServiceService,
     private dialog: MatDialog,
     private translateService: TranslateService,
-    private userService: UserService
+    private userService: UserService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
+    this.myId = JSON.parse(localStorage.getItem('user'))._id;
     if (this.testService.userInfo._id) {
       this.userId = this.testService.userInfo._id;
     } else {
@@ -61,6 +65,11 @@ export class NewCreditComponent implements OnInit {
     this.testService.getUsers().subscribe((res) => {
       this.options = res;
       this.usersLoading = false;
+      let something = res.find((user) => {
+        return user.id === this.myId
+      })
+      this.name = something;
+      this.newCreditForm.patchValue({firstPerson: something.name})
       this.filteredOptions = this.newCreditForm.valueChanges.pipe(
         startWith(''),
         map(value => {
@@ -88,7 +97,7 @@ export class NewCreditComponent implements OnInit {
   private _filter(value: any): any[] {
     const filterValue = value.toLowerCase();
 
-    return this.options.filter(option => option.name.toLowerCase().includes(filterValue));
+    return this.options.filter(option => (option.name.toLowerCase().includes(filterValue) && option.id !== this.myId));
   }
 
   addNewCredit = this.newCreditForm.value;
@@ -109,6 +118,7 @@ export class NewCreditComponent implements OnInit {
     this._loan.createLoan(this.addNewCredit).subscribe(
       res => {
         console.log(res)
+        this.toastr.success('Кредит создан!');
       },
       err => console.log(err)
     );

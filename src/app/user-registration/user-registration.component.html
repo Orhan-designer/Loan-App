@@ -42,7 +42,7 @@
             </mat-error>
         </mat-form-field>
 
-        <button type="button" mat-raised-button routerLink="/contact-list" (click)="createDialog()" (click)="registerUser()"
+        <button type="button" mat-raised-button (click)="registerUser()"
             [disabled]="!userForm.valid">{{'buttons.registration' | translate}}
         </button>
 

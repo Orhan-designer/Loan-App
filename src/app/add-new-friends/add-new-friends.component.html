@@ -1,14 +1,6 @@
 <div class="container">
     <form [formGroup]="newFriendForm">
         <h3>{{'title.addNewFriend' | translate}}</h3>
-        <!-- <mat-form-field>
-            <mat-label>{{'ngContainer.fullName' | translate}}</mat-label>
-            <input type="text" matInput id="firstName" name="firstName" required formControlName="fullName"
-                placeholder="{{'ngContainer.fullName' | translate}}">
-            <mat-error *ngIf="newFriendForm.controls['fullName'].hasError('required')">
-                {{'errors.nameRequired' | translate}}
-            </mat-error>
-        </mat-form-field> -->
 
         <mat-form-field>
             <mat-label>{{'label.email' | translate}}</mat-label>
@@ -23,25 +15,7 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
-            <mat-label>First name</mat-label>
-            <input type="text" matInput id="firstName" name="firstName" placeholder="First Name" required
-                formControlName="firstName">
-            <mat-error *ngIf="newFriendForm.controls['firstName'].hasError('required')">
-                {{'errors.emailRequired' | translate}}
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label>Last name</mat-label>
-            <input type="text" matInput id="lastName" name="lastName" placeholder="Last Name" required
-                formControlName="lastName">
-            <mat-error *ngIf="newFriendForm.controls['lastName'].hasError('required')">
-                {{'errors.emailRequired' | translate}}
-            </mat-error>
-        </mat-form-field>
-
-        <button mat-raised-button (click)="onSubmit()" (click)="createDialog()" color="primary"
+        <button mat-raised-button (click)="onSubmit()" color="primary"
             [disabled]="!newFriendForm.valid">{{'buttons.addNewFriend' | translate}}</button>
     </form>
 </div>

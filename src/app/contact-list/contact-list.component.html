@@ -1,11 +1,12 @@
+<mat-spinner *ngIf="usersLoading"></mat-spinner>
 <div class="container">
     <h1>{{'title.filter' | translate}}</h1>
 
-    <mat-form-field>
+    <mat-form-field style="width: 200px;">
         <mat-label>
             {{'label.search' | translate}}
         </mat-label>
-        <input matInput (keyup)="applyFilter($event)" #input>
+        <input matInput [(ngModel)]="searchValue" (keyup)="applyFilter($event)" #input>
     </mat-form-field>
 
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8"

@@ -9,7 +9,7 @@ export class NewFriendsService {
 
   constructor(private http: HttpClient) { }
 
-  getFriends(friend) {
+  addFriend(friend) {
     return this.http.post<any>(this._newFriendsUrl, friend); //отправляем пост запрос на бэк
   };
 

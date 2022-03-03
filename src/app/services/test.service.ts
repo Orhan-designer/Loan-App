@@ -46,8 +46,8 @@ export class TestService {
     this.user = user;
   }
 
-  getFriends(id: string) {
-    return this.http.get<any>(this.serverUrl + 'friends/' + id)
+  getFriends(id: string, value) {
+    return this.http.post<any>(this.serverUrl + 'friends/' + id, {searchValue: value})
     //коллекция юзеров
     //твой профиль-друзья
     //фильтруешь

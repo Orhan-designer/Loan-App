@@ -1,4 +1,4 @@
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -28,12 +28,13 @@ import { LoansComponent } from './loans/loans.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { AddNewFriendsComponent } from './add-new-friends/add-new-friends.component';
 import { UserLoginComponent } from './user-login/user-login.component';
-import { NewFriendsService } from './new-friends.service';
-import { LoanServiceService } from './loan-service.service';
+import { NewFriendsService } from './services/new-friends.service';
+import { LoanServiceService } from './services/loan-service.service';
 import { PopUpComponent } from './pop-up/pop-up.component';
 import { NewCreditComponent } from './new-credit/new-credit.component';
 import { AuthGuard } from './auth.guard';
 import { UserInterceptorService } from './user-interceptor.service';
+import { ToastrModule } from 'ngx-toastr';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(httpClient);
@@ -70,6 +71,11 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     MatProgressSpinnerModule,
     MatTabsModule,
     MatDialogModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    }),
     TranslateModule.forRoot(
       {
         loader: {

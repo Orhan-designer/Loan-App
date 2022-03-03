@@ -15,7 +15,7 @@
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>{{'label.firstPerson' | translate}}</mat-label>
             <input type="text" placeholder="{{'label.pickOne' | translate}}" aria-label="First Person" matInput
-                formControlName="firstPerson" [matAutocomplete]="auto">
+                formControlName="firstPerson" [matAutocomplete]="auto" readonly="true">
             <mat-error *ngIf="newCreditForm.controls['firstPerson'].hasError('required')">
                 {{'errors.firstNameRequired' | translate}}
             </mat-error>
@@ -60,7 +60,7 @@
             </mat-error>
         </mat-form-field>
 
-        <button mat-raised-button (click)="createDialog()" (click)="onSubmit()"
+        <button mat-raised-button (click)="onSubmit()"
             [disabled]="newCreditForm.status === 'INVALID'">{{'buttons.createNewLoan' | translate}}
         </button>
     </form>

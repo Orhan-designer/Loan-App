@@ -1,9 +1,9 @@
-<div class="header" *ngIf="hasHeader">
+<div class="header">
     <div class="header_subcontainer">
 
         <h1 class="title">{{'title.loanManagementSystem' | translate}}</h1>
 
-        <div class="menu-btn">
+        <div class="menu-btn" *ngIf="authService.loggedIn()">
             <ul class="navbar">
                 <a routerLink="/loans">
                     <li>{{'buttons.loans' | translate}}</li>
@@ -27,17 +27,20 @@
             <li>
                 <a routerLink="/register" *ngIf="!authService.loggedIn()">Register</a>
             </li>
+        </ul>
+        <ul class="navbar-nav">
             <li>
                 <a routerLink="/login" *ngIf="!authService.loggedIn()">Login</a>
             </li>
         </ul>
+
 
         <select (change)="selectLanguage($event)" class="language-picker">
             <option value="en-US">English</option>
             <option value="ru-RU">Russian</option>
         </select>
 
-        <button *ngIf="authService.loggedIn()" mat-raised-button routerLink="/login">
+        <button *ngIf="authService.loggedIn()" mat-raised-button (click)="logout()">
             Log out
             <span class='material-icons'>logout</span>
         </button>

@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Users } from '../users';
-import { UserService } from '../user.service';
-import { NewFriendsService } from '../new-friends.service';
+import { UserService } from '../services/user.service';
+import { NewFriendsService } from '../services/new-friends.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 import { TranslateService } from '@ngx-translate/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-new-friends',
   templateUrl: '../add-new-friends/add-new-friends.component.html',
@@ -23,37 +23,26 @@ export class AddNewFriendsComponent implements OnInit {
     private _friendService: NewFriendsService,
     private dialog: MatDialog,
     private translateService: TranslateService,
+    private toastr: ToastrService,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {}
 
   newFriendForm = this.fb.group({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$')]),
   });
 
   addNewFriend = this.newFriendForm.value;
-  model = new Users('', '', '', );
+  model = new Users('');
 
   onSubmit(): void {
     this.addNewFriend = this.newFriendForm.value;
-    this._friendService.getFriends(this.addNewFriend)
-      .subscribe(
-        res => this.addNewFriend = res,
-        err => {
-          if (err instanceof HttpErrorResponse) {
-            if (err.status === 401) {
-              this.router.navigate(['/register']);
-            }
-          }
-        }
-      );
-    this.router.navigate([`/contact-list`]);
-    this.userService.addUser(this.addNewFriend as Users)
-      .subscribe(() => {
-        this.users.push(this.model);
-      });
+    this.addNewFriend.id = JSON.parse(localStorage.getItem('user'))._id;
+    this._friendService.addFriend(this.addNewFriend).subscribe((res) => {
+      console.log(res)
+      this.toastr.success('Друг добавлен!');
+      this.router.navigate(['/contact-list'])
+    })
   };
 
   createDialog() {

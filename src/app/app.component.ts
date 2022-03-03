@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: '../app/app.component.html',
@@ -39,6 +39,7 @@ export class AppComponent {
 
   logout() {
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
     this.router.navigate([`/login`]);
   }
 }
