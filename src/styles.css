@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "~ngx-toastr/toastr";
+
 body {
 }
 html,
@@ -66,36 +68,32 @@ body {
 
 /* media queries */
 @media (max-width: 991px) {
-  .header {
-    padding: 1.5rem 2rem;
+
+  .header .header_subcontainer .title {
+    font-size: 20px;
   }
 
-  .header .header_subcontainer .language-picker {
-    width: 150px;
-    margin: 0 10px;
+  .header .header_subcontainer .language select {
+    padding: 2px 5px;
   }
 }
 
 @media (max-width: 768px) {
-
-  .header .header_subcontainer .navbar {
-    display: none;
+  .header {
+    width: 100%;
   }
-
-  /* .header .header_subcontainer .navbar.active {
-    right: 0;
-  } */
-
-  /* .header .header_subcontainer .navbar a {
-    display: block;
-    margin: 1.5rem;
-    padding: 0.5rem;
-    font-size: 1rem;
-  } */
+  .header .header_subcontainer .navbar-nav {
+    font-size: 10px;
+  }
 }
 
 @media (max-width: 450px) {
-  html {
-    font-size: 50%;
+  .header .header_subcontainer .title {
+    font-size: 16px;
   }
+
+  .header .header_subcontainer .language h2 {
+    font-size: 14px;
+  }
+
 }

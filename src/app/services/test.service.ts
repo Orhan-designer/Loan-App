@@ -5,15 +5,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TestService {
+  constructor(private http: HttpClient) { }
 
   private serverUrl = "http://localhost:3000/api/";
+
+  user: any = {};
 
   loansList: any[] = [
     { loanName: 'Test', firstPerson: { name: 'Andrey', id: 1 }, secondPerson: { name: 'Andrey', id: 1 }, howMuch: '50', reason: 'party', date: '11/10/2022' },
     { loanName: 'loan', firstPerson: { name: 'Andrey', id: 1 }, secondPerson: { name: 'Orhan', id: 2 }, howMuch: '150', reason: 'home', date: '12/10/2022' }
   ];
-
-  user: any = {};
 
   usersList: any[] = [
     { name: 'Andrey', id: 1 },
@@ -35,8 +36,6 @@ export class TestService {
     return this.user;
   }
 
-  constructor(private http: HttpClient) { }
-
   addLoan(loan: any): void {
     this.loansList.push(loan); //call api post
   }
@@ -47,10 +46,7 @@ export class TestService {
   }
 
   getFriends(id: string, value) {
-    return this.http.post<any>(this.serverUrl + 'friends/' + id, {searchValue: value})
-    //коллекция юзеров
-    //твой профиль-друзья
-    //фильтруешь
+    return this.http.post<any>(this.serverUrl + 'friends/' + id, { searchValue: value })
   }
 
   getUsers() {

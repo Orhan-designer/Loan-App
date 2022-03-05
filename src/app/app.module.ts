@@ -19,6 +19,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -33,7 +34,7 @@ import { LoanServiceService } from './services/loan-service.service';
 import { PopUpComponent } from './pop-up/pop-up.component';
 import { NewCreditComponent } from './new-credit/new-credit.component';
 import { AuthGuard } from './auth.guard';
-import { UserInterceptorService } from './user-interceptor.service';
+import { UserInterceptorService } from './services/user-interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
@@ -71,6 +72,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     MatProgressSpinnerModule,
     MatTabsModule,
     MatDialogModule,
+    MatMenuModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-center',
@@ -87,11 +89,11 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
       })
   ],
   providers: [AuthService, NewFriendsService, LoanServiceService, AuthGuard,
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: UserInterceptorService,
-    multi: true
-  }],
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UserInterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

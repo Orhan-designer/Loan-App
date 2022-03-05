@@ -32,3 +32,17 @@ th {
   justify-content: center;
   align-items: center;
 }
+
+/* media queries */
+@media (max-width: 991px) {
+  .container {
+    width: 80vw;
+  }
+}
+
+/* media queries */
+@media (max-width: 450px) {
+  .container {
+    width: 95vw;
+  }
+}

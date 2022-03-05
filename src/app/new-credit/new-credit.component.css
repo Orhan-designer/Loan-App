@@ -5,7 +5,7 @@ h2 {
 }
 
 mat-form-field {
-  width: 100%;
+  width: 90%;
 }
 
 mat-label {
@@ -30,8 +30,10 @@ mat-label {
 }
 
 .container {
-  width: 40%;
-  padding: 0px 10px;
+  width: 30vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(242, 242, 242, 0.7);
   border-radius: 3px;
   margin: 30px auto;
@@ -48,4 +50,25 @@ mat-label {
 
 .btn-container {
   text-align: right;
+}
+
+.button {
+  padding: 0px 5px;
+  outline: none;
+  background: none;
+  border: none;
+}
+
+/* media queries */
+@media (max-width: 991px) {
+  .container {
+    width: 50vw;
+  }
+}
+
+/* media queries */
+@media (max-width: 450px) {
+  .container {
+    width: 95vw;
+  }
 }

@@ -3,7 +3,34 @@
 
         <h1 class="title">{{'title.loanManagementSystem' | translate}}</h1>
 
-        <div class="menu-btn" *ngIf="authService.loggedIn()">
+        <div class="language">
+            <h2>{{'title.pickLanguage' | translate}}</h2>
+            <select (change)="selectLanguage($event)" class="language-picker">
+                <option value="en-US">English</option>
+                <option value="ru-RU">Russian</option>
+            </select>
+        </div>
+
+        <button *ngIf="!authService.loggedIn()" mat-icon-button [matMenuTriggerFor]="registerAndLoginMenu">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #registerAndLoginMenu="matMenu">
+            <ul class="navbar-nav">
+                <li>
+                    <a routerLink="/register" *ngIf="!authService.loggedIn()">Register</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li>
+                    <a routerLink="/login" *ngIf="!authService.loggedIn()">Login</a>
+                </li>
+            </ul>
+        </mat-menu>
+
+        <button *ngIf="authService.loggedIn()" mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
             <ul class="navbar">
                 <a routerLink="/loans">
                     <li>{{'buttons.loans' | translate}}</li>
@@ -20,30 +47,13 @@
                 <a routerLink="/add-new-friend">
                     <li>{{'buttons.addNewFriend' | translate}}</li>
                 </a>
+
+                <button *ngIf="authService.loggedIn()" mat-raised-button (click)="logout()">
+                    {{'buttons.logOut' | translate}}
+                    <span class='material-icons'>logout</span>
+                </button>
             </ul>
-        </div>
-
-        <ul class="navbar-nav">
-            <li>
-                <a routerLink="/register" *ngIf="!authService.loggedIn()">Register</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav">
-            <li>
-                <a routerLink="/login" *ngIf="!authService.loggedIn()">Login</a>
-            </li>
-        </ul>
-
-
-        <select (change)="selectLanguage($event)" class="language-picker">
-            <option value="en-US">English</option>
-            <option value="ru-RU">Russian</option>
-        </select>
-
-        <button *ngIf="authService.loggedIn()" mat-raised-button (click)="logout()">
-            Log out
-            <span class='material-icons'>logout</span>
-        </button>
+        </mat-menu>
     </div>
 </div>
 

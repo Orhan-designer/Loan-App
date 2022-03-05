@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Users } from '../users';
-import { UserService } from '../services/user.service';
 import { NewFriendsService } from '../services/new-friends.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from '@app/services/user.service';
 @Component({
   selector: 'app-add-new-friends',
   templateUrl: '../add-new-friends/add-new-friends.component.html',
@@ -19,14 +19,14 @@ export class AddNewFriendsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private userService: UserService,
     private _friendService: NewFriendsService,
     private dialog: MatDialog,
     private translateService: TranslateService,
     private toastr: ToastrService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private userService: UserService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   newFriendForm = this.fb.group({
     email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$')]),
@@ -41,8 +41,9 @@ export class AddNewFriendsComponent implements OnInit {
     this._friendService.addFriend(this.addNewFriend).subscribe((res) => {
       console.log(res)
       this.toastr.success('Друг добавлен!');
-      this.router.navigate(['/contact-list'])
-    })
+      this.router.navigate(['/contact-list']);
+    });
+
   };
 
   createDialog() {

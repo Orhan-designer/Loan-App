@@ -12,7 +12,7 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="fill">
+        <mat-form-field>
             <mat-label>{{'label.firstPerson' | translate}}</mat-label>
             <input type="text" placeholder="{{'label.pickOne' | translate}}" aria-label="First Person" matInput
                 formControlName="firstPerson" [matAutocomplete]="auto" readonly="true">
@@ -27,7 +27,7 @@
             </mat-autocomplete>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="fill">
+        <mat-form-field>
             <mat-label>{{'label.secondPerson' | translate}}</mat-label>
             <input type="text" placeholder="{{'label.pickOne' | translate}}" aria-label="Second Person" matInput
                 formControlName="secondPerson" [matAutocomplete]="auto2">
@@ -42,6 +42,10 @@
             </mat-autocomplete>
         </mat-form-field>
 
+        <button class="button" routerLink="/contact-list">
+            <mat-icon>person_add</mat-icon>
+        </button>
+
         <mat-form-field>
             <mat-label>{{'label.howMuch' | translate}}</mat-label>
             <input type="number" matInput id="howMuch" name="howMuch" placeholder="{{'label.howMuch' | translate}}"
@@ -51,7 +55,7 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field>
             <mat-label>{{'label.reason' | translate}}</mat-label>
             <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
                 cdkAutosizeMaxRows="5" formControlName="reason"></textarea>

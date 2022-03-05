@@ -20,7 +20,8 @@
         "logIn": "Log In",
         "register": "Registered successful",
         "addFriend": "A new friend has been added to your contact list",
-        "openLoan": "A new loan has been added to your loans list"
+        "openLoan": "A new loan has been added to your loans list",
+        "pickLanguage": "Pick language"
     },
     "label": {
         "email": "Email",
