@@ -36,10 +36,12 @@ import { NewCreditComponent } from './new-credit/new-credit.component';
 import { AuthGuard } from './auth.guard';
 import { UserInterceptorService } from './services/user-interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
+import { DatePipe } from '@angular/common';
+import { GhostProfileService } from './services/ghost-profile.service';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(httpClient);
-}
+};
 
 @NgModule({
   declarations: [
@@ -89,11 +91,12 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
       })
   ],
   providers: [AuthService, NewFriendsService, LoanServiceService, AuthGuard,
+    GhostProfileService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: UserInterceptorService,
       multi: true
-    }],
+    }, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

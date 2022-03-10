@@ -8,8 +8,7 @@
         "contactList": "Contact List",
         "loans": "Loans",
         "createNewLoan": "Create New Loan",
-        "addNewFriend": "Add New Friend",
-        "delete": "Delete"
+        "addNewFriend": "Add New Friend"
     },
     "title": {
         "registerForm": "Register Form",
@@ -32,12 +31,13 @@
         "howMuch": "How Much",
         "reason": "Reason",
         "selectUser": "Select User",
-        "search": "Email/First Name/Last Name",
+        "search": "Email/First Name/Last Name/Phone",
         "enterYouLogin": "Enter you login",
         "enterYouPassword": "Enter you password",
         "pickOne": "Pick One",
         "firstName": "First Name",
-        "lastName": "Last Name"
+        "lastName": "Last Name",
+        "phone": "Phone"
     },
     "span": {
         "userName": "User Name"
@@ -48,9 +48,7 @@
         "date": "Date"
     },
     "ngContainer": {
-        "id": "id",
         "fullName": "Full Name",
-        "city": "City",
         "phone": "Phone"
     },
     "errors": {
@@ -58,7 +56,6 @@
         "emailIsValid": "Please enter a valid email address",
         "passwordRequired": "Password is required",
         "nameRequired": "Name is required",
-        "cityRequired": "City is required",
         "phoneRequired": "Phone is required",
         "loanNameRequired": "Loan name is required",
         "firstNameRequired": "First name is required",

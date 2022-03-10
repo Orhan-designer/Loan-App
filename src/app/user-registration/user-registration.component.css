@@ -53,3 +53,17 @@ mat-label {
   border: none;
   outline: none;
 }
+
+/* media queries */
+@media (max-width: 991px) {
+  .container {
+    width: 60vw;
+  }
+}
+
+/* media queries */
+@media (max-width: 450px) {
+  .container {
+    width: 90vw;
+  }
+}

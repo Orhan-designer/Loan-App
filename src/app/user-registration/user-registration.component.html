@@ -42,6 +42,15 @@
             </mat-error>
         </mat-form-field>
 
+        <mat-form-field>
+            <mat-label>{{'label.phone' | translate}}</mat-label>
+            <input type="tel" matInput class="form-control" id="phone" name="phone" required
+                formControlName="phone">
+            <mat-error *ngIf="userForm.controls['phone'].hasError('required')">
+                {{'errors.phoneRequired' | translate}}
+            </mat-error>
+        </mat-form-field>
+
         <button type="button" mat-raised-button (click)="registerUser()"
             [disabled]="!userForm.valid">{{'buttons.registration' | translate}}
         </button>

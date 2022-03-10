@@ -1,22 +1,21 @@
 {
     "buttons": {
         "registration": "Зарегистрироваться",
-        "logIn": "Войти",
+        "logIn": "Войти в профиль",
         "logOut": "Выйти",
         "addFriend": "Добавить друга",
-        "newLoan": "Открыть новый долг",
+        "newLoan": "Открыть новый кредит",
         "contactList": "Список контактов",
         "loans": "Долги",
         "createNewLoan": "Открыть новый долг",
-        "addNewFriend": "Добавить друга",
-        "delete": "Удалить"
+        "addNewFriend": "Добавить друга"
     },
     "title": {
         "registerForm": "Форма регистрации",
-        "loanManagementSystem": "Система управления долгами",
-        "openNewLoan": "Открытие нового долга",
+        "loanManagementSystem": "Система управления кредитами",
+        "openNewLoan": "Открытие нового кредита",
         "filter": "Фильтр",
-        "addNewFriend": "Добавление нового друга",
+        "addNewFriend": "Добавьте нового друга",
         "logIn": "Войти в профиль",
         "register": "Регистрация прошла успешно",
         "addFriend": "Пользователь успешно добавлен в ваш список контактов",
@@ -26,18 +25,19 @@
     "label": {
         "email": "Почтовый адрес",
         "password": "Пароль",
-        "loanName": "Название долга",
+        "loanName": "Название кредита",
         "firstPerson": "Первый пользователь",
         "secondPerson": "Второй пользователь",
         "howMuch": "Какая сумма",
         "reason": "Причина",
         "selectUser": "Выберите пользователя",
-        "search": "Email/Имя/Фамилия",
+        "search": "Email/Имя/Фамилия/Номер телефона",
         "enterYouLogin": "Введите ваш логин",
         "enterYouPassword": "Введите ваш пароль",
         "pickOne": "Выберите пользователя",
         "firstName": "Имя",
-        "lastName": "Фамилия"
+        "lastName": "Фамилия",
+        "phone": "Номер телефона"
     },
     "span": {
         "userName": "Имя пользователя"
@@ -48,9 +48,7 @@
         "date": "Дата"
     },
     "ngContainer": {
-        "id": "Серийный номер",
         "fullName": "Имя",
-        "city": "Город",
         "phone": "Номер телефона"
     },
     "errors": {
@@ -58,13 +56,12 @@
         "emailIsValid": "Пожалуйста, введите действительный адрес электронной почты",
         "passwordRequired": "Необходим пароль",
         "nameRequired": "Укажите имя",
-        "cityRequired": "Укажите город",
-        "phoneRequired": "Требуется номер телефона",
-        "loanNameRequired": "Введите имя займа, которое хотите открыть",
+        "loanNameRequired": "Введите название кредита, которое хотите открыть",
         "firstNameRequired": "Требуется имя",
         "secondNameRequired": "Требуется второе имя",
         "howMuchRequired": "Сколько хотите занять?",
         "reasonRequired": "Опишите причину займа",
-        "lastNameRequired": "Требуется фамилия"
+        "lastNameRequired": "Требуется фамилия",
+        "phoneRequired": "Введите номер телефона"
     }
 }

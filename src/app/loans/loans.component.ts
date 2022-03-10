@@ -19,16 +19,6 @@ export class LoansComponent implements OnInit {
   users: any[] = [];
   id: string;
 
-  positiveCredit: any[] = [{
-    service: '12 days ago Party', loan: -100,
-    service2: '6 days ago  “Will return by Friday”', loan2: -120,
-    service3: '1 day ago  “Returned funds by card transfer”', loan3: 210
-  }];
-
-  totalPrice = this.positiveCredit.reduce((total, item) => {
-    return total + item.service.loan;
-  });
-
   ngOnInit(): void {
     if (this.testService.userInfo._id) {
       this.id = this.testService.userInfo._id;

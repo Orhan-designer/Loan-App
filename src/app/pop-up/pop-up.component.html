@@ -3,24 +3,20 @@
     <h2 *ngIf="data.addFriend">{{'title.addFriend' | translate}}</h2>
     <h2 *ngIf="data.openLoan">{{'title.openLoan' | translate}}</h2>
     <div class="wrapper">
-        <button *ngIf="!data.container" class="clickOk" (click)="pressOk()" color="primary" mat-raised-button>
+        <button *ngIf="!data.ghostProfile" class="clickOk" (click)="pressOk()" color="primary" mat-raised-button>
             Ok
         </button>
     </div>
 
-    <mat-form-field *ngIf="data.container">
-        <mat-label>{{'label.email' | translate}}</mat-label>
-        <input type="email" matInput id="email" name="email" placeholder="john@example.com" required
-            >
-    </mat-form-field>
+    <form [formGroup]="newEmailForm">
+        <mat-form-field *ngIf="data.ghostProfile">
+            <mat-label>{{'label.email' | translate}}</mat-label>
+            <input type="email" matInput id="email" name="email" formControlName="email" required>
+        </mat-form-field>
+    </form>
 
-    <mat-form-field *ngIf="data.container">
-        <mat-label>last name</mat-label>
-        <input type="text" matInput id="lastName" name="lastName" placeholder="Last Name" required
-            >
-    </mat-form-field>
 
-    <button *ngIf="data.container" routerLink="/contact-list" class="clickOk" (click)="pressOk()" color="primary" mat-raised-button>
+    <button *ngIf="data.ghostProfile" (click)="newGhostFriend()" color="primary" mat-raised-button>
         Add friend
     </button>
 

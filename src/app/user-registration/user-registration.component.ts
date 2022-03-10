@@ -28,16 +28,17 @@ export class UserRegistrationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(this._auth.loggedIn()) {
+    if (this._auth.loggedIn()) {
       this.router.navigate(['contact-list']);
-    }
-   }
+    };
+  };
 
   userForm = this.fb.group({
     email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$')]),
     password: new FormControl('', [Validators.required]),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [Validators.required]),
     isGhost: false
   })
 
@@ -57,8 +58,8 @@ export class UserRegistrationComponent implements OnInit {
           // this.createDialog();
         },
         err => console.log(err)
-      )
-  }
+      );
+  };
 
   createDialog() {
     this.dialog.open(PopUpComponent, {
@@ -66,9 +67,9 @@ export class UserRegistrationComponent implements OnInit {
         register: 'You register successfully'
       }
     });
-  }
+  };
 
   public selectLanguage(event: any) {
-    this.translateService.use(event.target.value)
-  }
+    this.translateService.use(event.target.value);
+  };
 }

@@ -2,7 +2,7 @@
 <div class="container">
     <h1>{{'title.filter' | translate}}</h1>
 
-    <mat-form-field style="width: 200px;">
+    <mat-form-field>
         <mat-label>
             {{'label.search' | translate}}
         </mat-label>
@@ -31,6 +31,13 @@
                 {{'label.email' | translate}}
             </th>
             <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by phone">
+                {{'label.phone' | translate}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

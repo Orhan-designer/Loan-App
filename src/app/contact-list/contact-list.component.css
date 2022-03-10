@@ -4,16 +4,19 @@ h1 {
   text-align: center;
 }
 
+mat-form-field {
+  width: 100%;
+}
+
 table {
   width: 100%;
 }
 
-input {
-  width: 50%;
-}
-
 .container {
-  width: 50vw;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   padding: 16px;
   background-color: rgba(242, 242, 242, 0.7);
   border: 1px solid lightgrey;
@@ -25,24 +28,10 @@ th {
   font-size: 16px;
 }
 
-.mat-fab {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* media queries */
-@media (max-width: 991px) {
-  .container {
-    width: 80vw;
-  }
-}
-
 /* media queries */
 @media (max-width: 450px) {
+
   .container {
-    width: 95vw;
+    width: 90vw;
   }
 }

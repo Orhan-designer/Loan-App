@@ -55,6 +55,6 @@ mat-label {
 /* media queries */
 @media (max-width: 450px) {
   .container {
-    width: 80vw;
+    width: 90vw;
   }
 }

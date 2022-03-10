@@ -13,8 +13,14 @@ import { Users } from '../users';
   styleUrls: ['../contact-list/contact-list.component.css']
 })
 export class ContactListComponent implements OnInit {
+  constructor(
+    private usersData: UsersMemoryDataService,
+    private _liveAnnouncer: LiveAnnouncer,
+    private testService: TestService,
+    private translateService: TranslateService
+  ) { }
 
-  displayedColumns: string[] = ['firstName', 'lastName', 'email'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'phone'];
   dataSource = new MatTableDataSource(this.usersData.users);
   usersLoading: boolean = true;
   id: any = {};
@@ -24,33 +30,29 @@ export class ContactListComponent implements OnInit {
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
-  }
+  };
 
   applyFilter(event: Event) {
-    this.getFriends()
-  }
+    this.getFriends();
+    return event;
+  };
 
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
-    }
-  }
-
-  constructor(
-    private usersData: UsersMemoryDataService,
-    private _liveAnnouncer: LiveAnnouncer,
-    private testService: TestService,
-    private translateService: TranslateService) { }
+    };
+  };
 
   ngOnInit(): void {
     if (this.testService.userInfo._id) {
       this.id = this.testService.userInfo._id;
     } else {
       this.id = JSON.parse(localStorage.getItem('user'))._id;
-    }
-    this.getFriends()
+    };
+
+    this.getFriends();
   }
 
   getFriends() {
@@ -58,11 +60,11 @@ export class ContactListComponent implements OnInit {
     this.testService.getFriends(this.id, this.searchValue).subscribe((res) => {
       this.dataSource = res;
       this.usersLoading = false;
-    })
-  }
+    });
+  };
 
   public selectLanguage(event: any) {
-    this.translateService.use(event.target.value)
-  }
+    this.translateService.use(event.target.value);
+  };
 
 }
