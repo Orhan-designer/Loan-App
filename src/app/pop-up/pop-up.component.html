@@ -1,4 +1,5 @@
 <div class="container">
+    
     <h2 *ngIf="data.register">{{'title.register' | translate}}</h2>
     <h2 *ngIf="data.addFriend">{{'title.addFriend' | translate}}</h2>
     <h2 *ngIf="data.openLoan">{{'title.openLoan' | translate}}</h2>
@@ -8,15 +9,43 @@
         </button>
     </div>
 
-    <form [formGroup]="newEmailForm">
+    <form [formGroup]="newGhostUserForm">
         <mat-form-field *ngIf="data.ghostProfile">
             <mat-label>{{'label.email' | translate}}</mat-label>
             <input type="email" matInput id="email" name="email" formControlName="email" required>
+            <mat-error *ngIf="newGhostUserForm.controls['email'].hasError('required')">
+                {{'errors.emailRequired' | translate}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{'label.firstName' | translate}}</mat-label>
+            <input type="text" matInput class="form-control" id="firstName" name="firstName" required
+                formControlName="firstName">
+            <mat-error *ngIf="newGhostUserForm.controls['firstName'].hasError('required')">
+                {{'errors.firstNameRequired' | translate}}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>{{'label.lastName' | translate}}</mat-label>
+            <input type="text" matInput class="form-control" id="lastName" name="lastName" required
+                formControlName="lastName">
+            <mat-error *ngIf="newGhostUserForm.controls['lastName'].hasError('required')">
+                {{'errors.lastNameRequired' | translate}}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>{{'label.phone' | translate}}</mat-label>
+            <input type="tel" matInput class="form-control" id="phone" name="phone" required formControlName="phone">
+            <mat-error *ngIf="newGhostUserForm.controls['phone'].hasError('required')">
+                {{'errors.phoneRequired' | translate}}
+            </mat-error>
         </mat-form-field>
     </form>
 
-
-    <button *ngIf="data.ghostProfile" (click)="newGhostFriend()" color="primary" mat-raised-button>
+    <button *ngIf="data.ghostProfile" (click)="newGhostFriend()" color="primary" [disabled]="!newGhostUserForm.valid"
+        mat-raised-button>
         Add friend
     </button>
 

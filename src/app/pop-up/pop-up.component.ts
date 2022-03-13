@@ -28,24 +28,23 @@ export class PopUpComponent implements OnInit {
     this.dialogRef.close(true);
   };
 
-  newEmailForm = this.fb.group({
-    email: new FormControl('', [Validators.required, Validators.email])
+  newGhostUserForm = this.fb.group({
+    email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$')]),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [Validators.required]),
   })
 
+  addNewGhostFriend = this.newGhostUserForm.value;
 
-  addNewGhostFriend = this.newEmailForm.value;
+  newGhostFriend(): void {
+    this.addNewGhostFriend = this.newGhostUserForm.value;
+    this.addNewGhostFriend.id = JSON.parse(localStorage.getItem('user'))._id;
+    this._ghost.addGhostProfile(this.addNewGhostFriend).subscribe((res) => {
+      console.log(res);
+      this.toastr.success('Контакт успешно создан!');
+    },
 
-  newGhostFriend() {
-    this.addNewGhostFriend = this.newEmailForm.value;
-    this.addNewGhostFriend = JSON.parse(localStorage.getItem('user'))._id;
-    this._ghost.addGhostProfile(this.addNewGhostFriend).subscribe(
-      res => {
-        console.log(res)
-        this.toastr.success('Контакт успешно создан!');
-      },
-      err => {
-        console.log(err);
-      }
     );
     this.dialogRef.close(true);
   };
