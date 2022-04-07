@@ -3,25 +3,23 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { throwError } from 'rxjs';
+import { environment } from '@environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-  private _registerUrl = "http://localhost:3000/api/register";
-  private _loginUrl = "http://localhost:3000/api/login";
-
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
   ) { }
 
   registerUser(user) {
-    return this.http.post<any>(this._registerUrl, user);
+    return this.http.post<any>(`${environment.apiUrl}/register`, user);
   };
 
   loginUser(user) {
-    return this.http.post<any>(this._loginUrl, user).pipe(
+    return this.http.post<any>(`${environment.apiUrl}/login`, user).pipe(
       map((data) => {
         return data;
       }),
@@ -37,6 +35,6 @@ export class AuthService {
   };
 
   getToken() {
-    return localStorage.getItem('user');
+    return localStorage.getItem("user");
   };
 }
