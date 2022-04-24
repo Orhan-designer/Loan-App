@@ -38,6 +38,7 @@ import { UserInterceptorService } from './services/user-interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { GhostProfileService } from './services/ghost-profile.service';
+import { RepayComponent } from './repay/repay.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(httpClient);
@@ -52,7 +53,8 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     AddNewFriendsComponent,
     UserLoginComponent,
     PopUpComponent,
-    NewCreditComponent
+    NewCreditComponent,
+    RepayComponent
   ],
   imports: [
     BrowserModule,

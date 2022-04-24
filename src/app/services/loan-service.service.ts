@@ -11,4 +11,8 @@ export class LoanServiceService {
     return this.http.post<any>(`${environment.apiUrl}/new-credit`, loan);
   }
 
+  repay(loan) {
+    return this.http.post<any>(`${environment.apiUrl}/repay`, loan);
+  }
+
 }

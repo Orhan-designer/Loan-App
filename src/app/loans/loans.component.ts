@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TestService } from '../services/test.service';
 import { TranslateService } from '@ngx-translate/core';
+import { MatDialog } from '@angular/material/dialog';
+import { RepayComponent } from '@app/repay/repay.component';
 
 @Component({
   selector: 'app-loans',
@@ -10,7 +12,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class LoansComponent implements OnInit {
   constructor(
     private testService: TestService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private dialog: MatDialog,
   ) { }
 
   isLoansLoaded: boolean = false;
@@ -18,6 +21,7 @@ export class LoansComponent implements OnInit {
   loans: any[] = [];
   users: any[] = [];
   id: string;
+  color = '#fafa77';
 
   ngOnInit(): void {
     if (this.testService.userInfo._id) {
@@ -35,6 +39,22 @@ export class LoansComponent implements OnInit {
       this.isLoansLoaded = true;
     });
   };
+
+  setColor(loan) {
+    if (+loan.total >= 0) {
+      return '#4eff4e'
+    } else {
+      return '#ff7c7c'
+    }
+  }
+
+  repay(id) {
+    this.dialog.open(RepayComponent, {
+      data: id
+    }).afterClosed().subscribe((res) => {
+      this.getLoans();
+    });
+  }
 
   getLoans() {
     this.testService.getLoans(this.id).subscribe((res) => {

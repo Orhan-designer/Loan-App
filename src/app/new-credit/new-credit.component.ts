@@ -113,7 +113,8 @@ export class NewCreditComponent implements OnInit {
     this.addNewCredit.firstPerson = this.name ? this.name : { name: this.addNewCredit.firstPerson, id: null };
     this.addNewCredit.secondPerson = this.name2 ? this.name2 : { name: this.addNewCredit.secondPerson, id: null };
     this.addNewCredit.userId = this.userId;
-    this.testService.addLoan(this.addNewCredit); //передаём в сервис, форму кредита
+    this.testService.addLoan(this.addNewCredit);
+    this.addNewCredit.howMuch = `-${this.addNewCredit.howMuch}` //передаём в сервис, форму кредита
     this._loan.createLoan(this.addNewCredit).subscribe(
       res => {
         console.log(res);

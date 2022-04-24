@@ -11,7 +11,7 @@
     <mat-accordion>
         <mat-expansion-panel *ngFor="let loan of loans" (opened)="panelOpenState = true"
             (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
+            <mat-expansion-panel-header [style.background]="setColor(loan)">
                 <mat-panel-title>
                     {{'label.loanName' | translate}} {{loan.loanName}}
                 </mat-panel-title>
@@ -19,10 +19,24 @@
                     <span>{{'span.userName' | translate}}:</span><span>{{loan.secondPerson.name}}</span>
                 </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>{{'p.sum' | translate}}: {{loan.howMuch}} $</p>
-            <p>{{'p.reason' | translate}}: {{loan.reason}}</p>
-            <p>{{'p.date' | translate}}: {{loan.date}}</p>
-            <p>Total: $</p>
+            <div style="display: flex; justify-content: space-between;">
+                <div>
+                    <p>{{'p.sum' | translate}}: {{loan.howMuch}} $</p>
+                    <p>{{'p.reason' | translate}}: {{loan.reason}}</p>
+                    <p>{{'p.date' | translate}}: {{loan.date}}</p>
+                    <p>Total: {{loan.total}}$</p>
+                    <p>
+                        <span>History: </span>
+                        <span *ngFor="let history of loan.history">
+                            {{history}} $
+                        </span>
+                    </p>
+                </div>
+                <div *ngIf="loan.total < 0">
+                    <button (click)="repay(loan._id)" mat-raised-button color="primary">Repay</button>
+                </div>
+            </div>
+
         </mat-expansion-panel>
     </mat-accordion>
 </div>
