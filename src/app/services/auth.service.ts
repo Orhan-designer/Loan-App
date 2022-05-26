@@ -5,21 +5,18 @@ import { ToastrService } from 'ngx-toastr';
 import { throwError } from 'rxjs';
 import { environment } from '@environments/environment';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class AuthService {
-  constructor(
-    private http: HttpClient,
-    private toastr: ToastrService,
-  ) { }
+  constructor(private http: HttpClient, private toastr: ToastrService) {}
 
   registerUser(user) {
-    return this.http.post<any>(`${environment.apiUrl}/register`, user);
-  };
+    console.log('user', user);
+    return this.http.post<any>(`${environment.apiUrl}/auth/signup`, user);
+  }
 
   loginUser(user) {
-    return this.http.post<any>(`${environment.apiUrl}/login`, user).pipe(
+    return this.http.post<any>(`${environment.apiUrl}/auth/signin`, user).pipe(
       map((data) => {
         return data;
       }),
@@ -28,13 +25,13 @@ export class AuthService {
         return throwError(error);
       })
     );
-  };
+  }
 
   loggedIn() {
-    return !!JSON.parse(localStorage.getItem("token"));
-  };
+    return !!JSON.parse(JSON.stringify(localStorage.getItem('token')));
+  }
 
   getToken() {
-    return localStorage.getItem("user");
-  };
+    return localStorage.getItem('user');
+  }
 }

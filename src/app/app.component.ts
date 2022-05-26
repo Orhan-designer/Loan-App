@@ -20,9 +20,9 @@ export class AppComponent {
   ) {
     this.router.events.forEach((event: any) => { //скрываем header в /register и /login
       if (event instanceof NavigationStart) {
-        if (event['url'] === '/register') {
+        if (event['url'] === '/signup') {
           this.hasHeader = false;
-        } else if (event['url'] === '/login') {
+        } else if (event['url'] === '/signin') {
           this.hasHeader = false;
         } else {
           this.hasHeader = true;
@@ -40,6 +40,6 @@ export class AppComponent {
   logout() {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
-    this.router.navigate([`/login`]);
+    this.router.navigate([`/signin`]);
   }
 }

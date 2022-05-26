@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 import { Users } from '../users';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersMemoryDataService {
-
-  users: any[] = [];
+  users: any;
 
   createDb() {
-    return { users: this.users }
+    return { users: this.users };
   }
 
-  constructor() { }
+  constructor() {}
 }

@@ -9,9 +9,9 @@ import { AddNewFriendsComponent } from './add-new-friends/add-new-friends.compon
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/register', pathMatch: 'full' },
-  { path: 'register', component: UserRegistrationComponent },
-  { path: 'login', component: UserLoginComponent },
+  { path: '', redirectTo: '/signup', pathMatch: 'full' },
+  { path: 'signup', component: UserRegistrationComponent },
+  { path: 'signin', component: UserLoginComponent },
   { path: 'loans', component: LoansComponent, canActivate: [AuthGuard] },
   { path: 'contact-list', component: ContactListComponent, canActivate: [AuthGuard] },
   { path: 'new-credit', component: NewCreditComponent, canActivate: [AuthGuard] },

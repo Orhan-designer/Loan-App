@@ -16,15 +16,6 @@
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>{{'label.password' | translate}}</mat-label>
-            <input type="password" matInput class="form-control" id="password" name="password" required
-                formControlName="password">
-            <mat-error *ngIf="userForm.controls['password'].hasError('required')">
-                {{'errors.passwordRequired' | translate}}
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
             <mat-label>{{'label.firstName' | translate}}</mat-label>
             <input type="text" matInput class="form-control" id="firstName" name="firstName" required
                 formControlName="firstName">
@@ -48,6 +39,15 @@
                 formControlName="phone">
             <mat-error *ngIf="userForm.controls['phone'].hasError('required')">
                 {{'errors.phoneRequired' | translate}}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>{{'label.password' | translate}}</mat-label>
+            <input type="password" matInput class="form-control" id="password" name="password" required
+                formControlName="password">
+            <mat-error *ngIf="userForm.controls['password'].hasError('required')">
+                {{'errors.passwordRequired' | translate}}
             </mat-error>
         </mat-form-field>
 

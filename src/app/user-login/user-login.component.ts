@@ -40,10 +40,9 @@ export class UserLoginComponent implements OnInit {
     this._auth.loginUser(this.newUser)
       .subscribe(
         res => {
-          console.log(res)
           this.testService.setUser(res);
-          localStorage.setItem('user', JSON.stringify(res.user));
-          localStorage.setItem('token', JSON.stringify(res.token));
+          localStorage.setItem('user', JSON.stringify(res.values.user));
+          localStorage.setItem('token', JSON.stringify(res.values.token));
           this.router.navigate(['/contact-list']);
           this.toastr.success('Вы успешно вошли в систему!');
         },

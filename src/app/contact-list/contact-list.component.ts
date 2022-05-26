@@ -5,12 +5,11 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { UsersMemoryDataService } from '../services/users-memory-data.service';
 import { TestService } from '../services/test.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Users } from '../users';
 
 @Component({
   selector: 'app-contact-list',
   templateUrl: '../contact-list/contact-list.component.html',
-  styleUrls: ['../contact-list/contact-list.component.css']
+  styleUrls: ['../contact-list/contact-list.component.css'],
 })
 export class ContactListComponent implements OnInit {
   constructor(
@@ -18,39 +17,40 @@ export class ContactListComponent implements OnInit {
     private _liveAnnouncer: LiveAnnouncer,
     private testService: TestService,
     private translateService: TranslateService
-  ) { }
+  ) {}
 
-  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'phone'];
+  displayedColumns: string[] = ['email', 'firstName', 'lastName', 'phone'];
   dataSource = new MatTableDataSource(this.usersData.users);
   usersLoading: boolean = true;
-  id: any = {};
+  id: any;
   searchValue: string = '';
 
   @ViewChild(MatSort) sort!: MatSort;
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
-  };
+  }
 
   applyFilter(event: Event) {
     this.getFriends();
     return event;
-  };
+  }
 
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
-    };
-  };
+    }
+  }
 
   ngOnInit(): void {
-    if (this.testService.userInfo._id) {
-      this.id = this.testService.userInfo._id;
+    if (this.testService.userInfo) {
+      //начал здесь что то искать, удалил с конца id, продолжу завтра искать лазейку
+      this.id = this.testService.userInfo;
     } else {
-      this.id = JSON.parse(localStorage.getItem('user'))._id;
-    };
+      this.id = JSON.parse(localStorage.getItem('user')).id;
+    }
 
     this.getFriends();
   }
@@ -58,13 +58,12 @@ export class ContactListComponent implements OnInit {
   getFriends() {
     this.usersLoading = true;
     this.testService.getFriends(this.id, this.searchValue).subscribe((res) => {
-      this.dataSource = res;
+      this.dataSource = res.values ? res.values : null;
       this.usersLoading = false;
     });
-  };
+  }
 
   public selectLanguage(event: any) {
     this.translateService.use(event.target.value);
-  };
-
+  }
 }

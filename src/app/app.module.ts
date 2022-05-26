@@ -4,14 +4,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
-import { MatSortModule } from '@angular/material/sort'
+import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { TextFieldModule } from '@angular/cdk/text-field';
@@ -22,6 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { NgxLocalStorageModule } from 'ngx-localstorage';
 
 import { AppComponent } from './app.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
@@ -42,7 +47,7 @@ import { RepayComponent } from './repay/repay.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(httpClient);
-};
+}
 
 @NgModule({
   declarations: [
@@ -54,7 +59,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     UserLoginComponent,
     PopUpComponent,
     NewCreditComponent,
-    RepayComponent
+    RepayComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,23 +87,29 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
       positionClass: 'toast-top-center',
       preventDuplicates: true,
     }),
-    TranslateModule.forRoot(
-      {
-        loader: {
-          provide: TranslateLoader,
-          useFactory: (HttpLoaderFactory),
-          deps: [HttpClient],
-        },
-        defaultLanguage: 'en-US',
-      })
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      defaultLanguage: 'en-US',
+    }),
+    NgxLocalStorageModule.forRoot(),
   ],
-  providers: [AuthService, NewFriendsService, LoanServiceService, AuthGuard,
+  providers: [
+    AuthService,
+    NewFriendsService,
+    LoanServiceService,
+    AuthGuard,
     GhostProfileService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: UserInterceptorService,
-      multi: true
-    }, DatePipe],
-  bootstrap: [AppComponent]
+      multi: true,
+    },
+    DatePipe,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

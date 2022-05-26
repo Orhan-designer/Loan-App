@@ -17,12 +17,12 @@
         <mat-menu #registerAndLoginMenu="matMenu">
             <ul class="navbar-nav">
                 <li>
-                    <a routerLink="/register" *ngIf="!authService.loggedIn()">{{'buttons.registration' |translate}}</a>
+                    <a routerLink="/signup" *ngIf="!authService.loggedIn()">{{'buttons.registration' |translate}}</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
                 <li>
-                    <a routerLink="/login" *ngIf="!authService.loggedIn()">{{'buttons.logIn' |translate}}</a>
+                    <a routerLink="/signin" *ngIf="!authService.loggedIn()">{{'buttons.logIn' |translate}}</a>
                 </li>
             </ul>
         </mat-menu>

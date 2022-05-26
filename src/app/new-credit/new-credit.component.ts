@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-new-credit',
   templateUrl: './new-credit.component.html',
-  styleUrls: ['./new-credit.component.css']
+  styleUrls: ['./new-credit.component.css'],
 })
 export class NewCreditComponent implements OnInit {
   constructor(
@@ -23,8 +23,8 @@ export class NewCreditComponent implements OnInit {
     private _loan: LoanServiceService,
     private dialog: MatDialog,
     private translateService: TranslateService,
-    private toastr: ToastrService,
-  ) { }
+    private toastr: ToastrService
+  ) {}
 
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;
 
@@ -51,23 +51,24 @@ export class NewCreditComponent implements OnInit {
   addNewCredit = this.newCreditForm.value;
 
   ngOnInit(): void {
-    this.myId = JSON.parse(localStorage.getItem('user'))._id;
+    this.myId = JSON.parse(localStorage.getItem('user')).id;
 
-    if (this.testService.userInfo._id) {
-      this.userId = this.testService.userInfo._id;
+    if (this.testService.userInfo) {
+      //удалил id пока что, но может придётся и вернуть его, будет видно
+      this.userId = this.testService.userInfo; //и тут тоже удалил id
     } else {
-      this.userId = JSON.parse(localStorage.getItem('user'))._id;
-    };
+      this.userId = JSON.parse(localStorage.getItem('user')).id;
+    }
 
     this.getUsers();
-  };
+  }
 
   getUsers() {
     this.testService.getUsers().subscribe((res) => {
-      this.options = res;
+      this.options = res.values; //достаём из res.values друзей, чтобы можно было их отфильтровывать в кредите
       this.usersLoading = false;
 
-      let something = res.find((user) => {
+      let something = res.values.find((user: any) => {
         return user.id === this.myId;
       });
 
@@ -76,66 +77,74 @@ export class NewCreditComponent implements OnInit {
       //фильтр имени пользователя, который даёт в долг
       this.filteredOptions = this.newCreditForm.valueChanges.pipe(
         startWith(''),
-        map(value => {
+        map((value) => {
           return this._filter(value ? value.firstPerson : '');
-        }),
+        })
       );
       //фильтр имен пользователей, которые берут в долг
       this.filteredOptions2 = this.newCreditForm.valueChanges.pipe(
         startWith(''),
-        map(value => {
+        map((value) => {
           return this._filter(value ? value.secondPerson : '');
-        }),
+        })
       );
     });
-  };
+  }
   //автоматический выбор пользователя, который даёт в долг
   selectName(option: any) {
     this.name = option;
-  };
+  }
   //выбор пользователя, который берёт в долг
   selectName2(option: any) {
     this.name2 = option;
-  };
+  }
 
   private _filter(value: any): any[] {
     const filterValue = value.toLowerCase();
-    return this.options.filter(option => (option.name.toLowerCase().includes(filterValue) && option.id !== this.myId));
-  };
+    return this.options.filter(
+      (option) =>
+        option.name.toLowerCase().includes(filterValue) &&
+        option.id !== this.myId
+    );
+  }
 
   triggerResize() {
-    this._ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
-  };
+    this._ngZone.onStable
+      .pipe(take(1))
+      .subscribe(() => this.autosize.resizeToFitContent(true));
+  }
 
   onSubmit(): void {
     this.addNewCredit = this.newCreditForm.value;
     this.addNewCredit.date = new Date();
-    this.addNewCredit.firstPerson = this.name ? this.name : { name: this.addNewCredit.firstPerson, id: null };
-    this.addNewCredit.secondPerson = this.name2 ? this.name2 : { name: this.addNewCredit.secondPerson, id: null };
+    this.addNewCredit.firstPerson = this.name
+      ? this.name
+      : { name: this.addNewCredit.firstPerson, id: null };
+    this.addNewCredit.secondPerson = this.name2
+      ? this.name2
+      : { name: this.addNewCredit.secondPerson, id: null };
     this.addNewCredit.userId = this.userId;
     this.testService.addLoan(this.addNewCredit);
-    this.addNewCredit.howMuch = `-${this.addNewCredit.howMuch}` //передаём в сервис, форму кредита
+    this.addNewCredit.howMuch = `-${this.addNewCredit.howMuch}`; //передаём в сервис, форму кредита
     this._loan.createLoan(this.addNewCredit).subscribe(
-      res => {
+      (res) => {
         console.log(res);
         this.toastr.success('Кредит создан!');
       },
-      err => console.log(err)
+      (err) => console.log(err)
     );
     this.router.navigate([`/loans`]);
-  };
+  }
 
   createGhostProfile() {
     this.dialog.open(PopUpComponent, {
       data: {
-        ghostProfile: 'add new friend'
-      }
+        ghostProfile: 'add new friend',
+      },
     });
-  };
+  }
 
   public selectLanguage(event: any) {
     this.translateService.use(event.target.value);
-  };
-
+  }
 }
-

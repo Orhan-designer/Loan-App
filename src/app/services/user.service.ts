@@ -5,25 +5,21 @@ import { UsersMemoryDataService } from './users-memory-data.service';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
-  constructor(
-    private usersData: UsersMemoryDataService,
-  ) { }
+  constructor(private usersData: UsersMemoryDataService) {}
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
   getUser(id: any): Observable<any> {
-    return of(this.usersData.users.find(u => u.id === id));
-  };
+    return of(this.usersData.users.find((u: any) => u.id === id));
+  }
 
   addUser(user: Users) {
     this.usersData.users.push(user);
     return of(user);
-  };
-
+  }
 }
