@@ -11,7 +11,6 @@ export class AuthService {
   constructor(private http: HttpClient, private toastr: ToastrService) {}
 
   registerUser(user) {
-    console.log('user', user);
     return this.http.post<any>(`${environment.apiUrl}/auth/signup`, user);
   }
 

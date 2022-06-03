@@ -1,6 +1,10 @@
 <div class="header">
     <div class="header_subcontainer">
 
+        <button *ngIf="!authService.loggedIn()" mat-icon-button [matMenuTriggerFor]="registerAndLoginMenu">
+            <mat-icon>menu</mat-icon>
+        </button>
+
         <h1 class="title">{{'title.loanManagementSystem' | translate}}</h1>
 
         <div class="language">
@@ -11,9 +15,6 @@
             </select>
         </div>
 
-        <button *ngIf="!authService.loggedIn()" mat-icon-button [matMenuTriggerFor]="registerAndLoginMenu">
-            <mat-icon>menu</mat-icon>
-        </button>
         <mat-menu #registerAndLoginMenu="matMenu">
             <ul class="navbar-nav">
                 <li>
@@ -30,6 +31,7 @@
         <button *ngIf="authService.loggedIn()" mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>menu</mat-icon>
         </button>
+        
         <mat-menu #menu="matMenu">
             <ul class="navbar">
                 <a routerLink="/loans">

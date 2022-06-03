@@ -1,29 +1,33 @@
 h2 {
   font-size: 24px;
-  color: black;
+  color: white;
   text-align: center;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Acme', sans-serif;
 }
 
 mat-form-field {
   width: 100%;
+  font-family: 'Acme', sans-serif;
 }
 
 mat-label {
   font-size: 18px;
-  color: black;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  font-family: 'Acme', sans-serif;
 }
 
 .container {
   text-align: left;
-  width: 60%;
+  width: 80%;
   padding: 0px 10px;
-  background-color: rgba(242, 242, 242, 0.7);
+  background-color: rgba(33, 33, 33, 0.702);
+  -webkit-box-shadow: 0px 0px 3px 6px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 3px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 3px 6px rgba(0, 0, 0, 0.3);
   border-radius: 3px;
   margin: 30px auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   transition: ease-in-out 0.6s;
 }
@@ -34,7 +38,7 @@ mat-label {
 
 .mat-raised-button {
   color: black;
-  padding: 16px 20px;
+  padding: 12px 30px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
@@ -42,8 +46,14 @@ mat-label {
   font-size: 20px;
 }
 
-.mat-raised-button:active {
-  background-color: orange;
+.container .mat-raised-button {
+  background-color: white;
+  color: black;
+  font-family: 'Acme', sans-serif;
+}
+
+.container .mat-raised-button:active {
+  background-color: greenyellow;
   color: white;
 }
 

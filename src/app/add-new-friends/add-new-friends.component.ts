@@ -42,7 +42,6 @@ export class AddNewFriendsComponent implements OnInit {
     this.addNewFriend = this.newFriendForm.value;
     this.addNewFriend.id = JSON.parse(localStorage.getItem('user')).id; // достаём из localstorage id основого пользователя
     this._friendService.addFriend(this.addNewFriend).subscribe((res) => {
-      console.log('res', res.values);
       this.addNewFriend = JSON.parse(
         JSON.stringify(localStorage.getItem(res.values))
       );

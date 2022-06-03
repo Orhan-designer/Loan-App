@@ -1,14 +1,16 @@
 {
     "buttons": {
         "registration": "Registration",
-        "logIn": "Log in",
+        "logIn": "Sign In",
         "logOut": "Log out",
         "addFriend": "Add new friends",
         "newLoan": "New Loan",
         "contactList": "Contact List",
         "loans": "Loans",
         "createNewLoan": "Create New Loan",
-        "addNewFriend": "Add New Friend"
+        "addNewFriend": "Add New Friend",
+        "repay": "To Repay",
+        "anotherRepay": "Repay"
     },
     "title": {
         "registerForm": "Register Form",
@@ -16,11 +18,12 @@
         "openNewLoan": "Open New Loan",
         "filter": "Filter",
         "addNewFriend": "Add New Friend",
-        "logIn": "Log In",
+        "logIn": "Sign In",
         "register": "Registered successful",
         "addFriend": "A new friend has been added to your contact list",
         "openLoan": "A new loan has been added to your loans list",
-        "pickLanguage": "Pick language"
+        "pickLanguage": "Pick Language",
+        "amount": "Enter Amount"
     },
     "label": {
         "email": "Email",
@@ -45,7 +48,9 @@
     "p": {
         "sum": "Sum",
         "reason": "Reason",
-        "date": "Date"
+        "date": "Date",
+        "total": "Total",
+        "history": "History"
     },
     "ngContainer": {
         "fullName": "Full Name",

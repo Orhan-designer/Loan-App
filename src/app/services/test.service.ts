@@ -10,9 +10,7 @@ export class TestService {
   private serverUrl = `${environment.apiUrl}/`;
 
   user: any;
-
   loansList: any[] = [];
-
   usersList: any[] = [];
 
   get loans() {
@@ -45,8 +43,10 @@ export class TestService {
     return this.http.get<any>(this.serverUrl + 'users/list');
   }
 
-  getLoans(id) {
-    return this.http.get<any>(this.serverUrl + 'loans/' + id);
+  getLoans(id, userId?) {
+    return this.http.get<any>(
+      this.serverUrl + 'loans/' + id + (userId ? `?id=${userId}` : '')
+    );
   }
 
   getFilteredLoans(data) {

@@ -50,10 +50,8 @@
                 {{'errors.passwordRequired' | translate}}
             </mat-error>
         </mat-form-field>
-
-        <button type="button" mat-raised-button (click)="registerUser()"
-            [disabled]="!userForm.valid">{{'buttons.registration' | translate}}
-        </button>
-
     </form>
+    <button type="button" mat-raised-button (click)="registerUser()"
+        [disabled]="!userForm.valid">{{'buttons.registration' | translate}}
+    </button>
 </div>

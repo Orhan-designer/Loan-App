@@ -46,8 +46,7 @@ export class ContactListComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.testService.userInfo) {
-      //начал здесь что то искать, удалил с конца id, продолжу завтра искать лазейку
-      this.id = this.testService.userInfo;
+      this.id = this.testService.userInfo.id;
     } else {
       this.id = JSON.parse(localStorage.getItem('user')).id;
     }

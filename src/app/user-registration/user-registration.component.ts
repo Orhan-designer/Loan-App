@@ -50,7 +50,7 @@ export class UserRegistrationComponent implements OnInit {
     this.newUser = this.userForm.value;
     this._auth.registerUser(this.newUser).subscribe(
       (res) => {
-        this.testService.setUser(res);
+        this.testService.setUser(res.values.user);
         localStorage.setItem('user', JSON.stringify(res.values.user));
         localStorage.setItem('token', JSON.stringify(res.values.token));
         this.router.navigate(['/contact-list']);

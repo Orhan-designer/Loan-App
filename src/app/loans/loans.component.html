@@ -1,39 +1,44 @@
 <mat-spinner *ngIf="!isLoansLoaded"></mat-spinner>
-<div class="container" *ngIf="isLoansLoaded">
+<div class="container">
     <mat-form-field appearance="fill">
         <mat-label>{{'label.selectUser' | translate}}</mat-label>
         <mat-select>
-            <mat-option *ngFor="let user of users" [value]="user.name" (click)="selectUser(user)">
+            <mat-option *ngFor="let user of users" [value]="user.name" (click)="selectUser(user)" >
                 {{user.name}}
             </mat-option>
         </mat-select>
     </mat-form-field>
-    <mat-accordion>
+    <div *ngIf="isLoansLoaded">
+        <p class="debts">My Debts: {{showSum(true)}}</p>
+        <p class="debts">Friends Debts: {{showSum()}}</p>
+    </div>
+    <mat-accordion *ngIf="isLoansLoaded">
         <mat-expansion-panel *ngFor="let loan of loans" (opened)="panelOpenState = true"
             (closed)="panelOpenState = false">
             <mat-expansion-panel-header [style.background]="setColor(loan)">
                 <mat-panel-title>
-                    {{'label.loanName' | translate}} {{loan.loanName}}
+                    {{'label.loanName' | translate}}: {{loan.loanName}}
                 </mat-panel-title>
                 <mat-panel-description>
-                    <span>{{'span.userName' | translate}}:</span><span>{{loan.secondPerson.name}}</span>
+                    <span>{{'span.userName' | translate}}</span> <span>: {{loan.secondPerson}}</span>
                 </mat-panel-description>
             </mat-expansion-panel-header>
             <div style="display: flex; justify-content: space-between;">
                 <div>
                     <p>{{'p.sum' | translate}}: {{loan.howMuch}} $</p>
                     <p>{{'p.reason' | translate}}: {{loan.reason}}</p>
-                    <p>{{'p.date' | translate}}: {{loan.date}}</p>
-                    <p>Total: {{loan.total}}$</p>
+                    <p>{{'p.date' | translate}}: {{loan.created_at}}</p>
+                    <p>{{'p.total' | translate}}: {{loan.total}}$</p>
                     <p>
-                        <span>History: </span>
+                        <span>{{'p.history' | translate}}: </span>
                         <span *ngFor="let history of loan.history">
                             {{history}} $
                         </span>
                     </p>
                 </div>
-                <div *ngIf="loan.total < 0">
-                    <button (click)="repay(loan._id)" mat-raised-button color="primary">Repay</button>
+                <div>
+                    <!-- Сделать условие, при котором кнопка будет скрываться, когда заходишь на второго пользователя -->
+                    <button (click)="repay(loan.ID)" mat-raised-button color="primary">{{'buttons.repay' | translate}}</button>
                 </div>
             </div>
 

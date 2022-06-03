@@ -4,7 +4,7 @@
 
         <mat-form-field>
             <mat-label>{{'label.email' | translate}}</mat-label>
-            <input type="email" matInput id="email" name="email" placeholder="john@example.com" required
+            <input type="email" matInput id="email" name="email" required
                 formControlName="email">
             <mat-error *ngIf="newFriendForm.controls['email'].hasError('required')">
                 {{'errors.emailRequired' | translate}}

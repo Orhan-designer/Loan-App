@@ -5,8 +5,6 @@ import { Router } from '@angular/router';
 import { map, Observable, startWith, take } from 'rxjs';
 import { TestService } from '../services/test.service';
 import { LoanServiceService } from '../services/loan-service.service';
-import { MatDialog } from '@angular/material/dialog';
-import { PopUpComponent } from '../pop-up/pop-up.component';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 @Component({
@@ -21,7 +19,6 @@ export class NewCreditComponent implements OnInit {
     private _ngZone: NgZone,
     private testService: TestService,
     private _loan: LoanServiceService,
-    private dialog: MatDialog,
     private translateService: TranslateService,
     private toastr: ToastrService
   ) {}
@@ -54,8 +51,7 @@ export class NewCreditComponent implements OnInit {
     this.myId = JSON.parse(localStorage.getItem('user')).id;
 
     if (this.testService.userInfo) {
-      //удалил id пока что, но может придётся и вернуть его, будет видно
-      this.userId = this.testService.userInfo; //и тут тоже удалил id
+      this.userId = this.testService.userInfo;
     } else {
       this.userId = JSON.parse(localStorage.getItem('user')).id;
     }
@@ -128,20 +124,12 @@ export class NewCreditComponent implements OnInit {
     this.addNewCredit.howMuch = `-${this.addNewCredit.howMuch}`; //передаём в сервис, форму кредита
     this._loan.createLoan(this.addNewCredit).subscribe(
       (res) => {
-        console.log(res);
+        console.log('res', res);
         this.toastr.success('Кредит создан!');
       },
       (err) => console.log(err)
     );
     this.router.navigate([`/loans`]);
-  }
-
-  createGhostProfile() {
-    this.dialog.open(PopUpComponent, {
-      data: {
-        ghostProfile: 'add new friend',
-      },
-    });
   }
 
   public selectLanguage(event: any) {

@@ -5,22 +5,23 @@ import { LoanServiceService } from '@app/services/loan-service.service';
 @Component({
   selector: 'app-repay',
   templateUrl: './repay.component.html',
-  styleUrls: ['./repay.component.css']
+  styleUrls: ['./repay.component.css'],
 })
 export class RepayComponent implements OnInit {
-  sum;
+  sum: any;
 
-  constructor(private loanService: LoanServiceService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<RepayComponent>) { }
+  constructor(
+    private loanService: LoanServiceService,
+    @Inject(MAT_DIALOG_DATA)
+    public data: any,
+    public dialogRef: MatDialogRef<RepayComponent>
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   forRepay() {
-    this.loanService.repay({ id: this.data, sum: this.sum }).subscribe(res => {
-      console.log(res)
+    this.loanService.repay({ id: this.data, sum: this.sum }).subscribe(() => {
       this.dialogRef.close(true);
-    })
+    });
   }
 }

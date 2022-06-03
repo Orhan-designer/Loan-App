@@ -1,5 +1,5 @@
 .header {
-  background-color: rgba(127, 128, 125, 0.3);
+  background-color: rgba(26, 22, 22, 0.822);
 }
 
 .header_subcontainer {
@@ -17,17 +17,16 @@ ul {
 a {
   margin: 0 10px;
   text-decoration: none;
-  color: black;
+  color: grey;
   font-size: 20px;
   font-weight: bold;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Acme', sans-serif;
   transition: ease-in-out 0.4s;
 }
 
 a:hover,
 a:focus {
-  color: orange;
-  text-shadow: 1px 1px 2px rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
 }
 
 .main {
@@ -39,23 +38,25 @@ a:focus {
 .title {
   color: white;
   font-weight: bold;
-  text-shadow: 2px 2px 2px black;
   font-size: 30px;
   padding: 16px 0;
+  font-family: 'Acme', sans-serif;
 }
 
 .language h2 {
   margin: 0px;
   padding: 0px;
+  color: white;
+  font-family: 'Acme', sans-serif;
 }
 
 .language-picker {
   padding: 5px 30px;
   border-radius: 5px;
   color: black;
-  font-family: sans-serif;
   font-size: 14px;
   outline: none;
+  font-family: 'Acme', sans-serif;
 }
 
 .mat-raised-button {
@@ -67,10 +68,12 @@ a:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: ease-in-out .3s;
 }
 
 .mat-raised-button:hover {
-  background-color: orange;
+  background-color: red;
+  transition: ease-in-out .3s;
   color: white;
 }
 
@@ -78,6 +81,7 @@ a:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 
 .mat-icon-button {
