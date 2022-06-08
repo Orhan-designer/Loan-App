@@ -1,21 +1,15 @@
-h2 {
-    font-size: 24px;
-    color: black;
-    text-align: center;
-    font-family: 'Acme', sans-serif;
+.container {
+    width: 18vw;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-input {
+.container input {
     outline: none;
     padding: 6px 0;
-    margin: 0 5px;
-    width: 10vw;
+    margin: 10px 0;
     border-radius: 5px;
-    /* border: 2px solid grey; */
     font-family: 'Acme', sans-serif;
-}
-
-button {
-    font-family: 'Acme', sans-serif;
-
 }

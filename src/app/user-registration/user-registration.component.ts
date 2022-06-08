@@ -23,11 +23,7 @@ export class UserRegistrationComponent implements OnInit {
     private toastr: ToastrService
   ) {}
 
-  ngOnInit(): void {
-    if (this._auth.loggedIn()) {
-      this.router.navigate(['contact-list']);
-    }
-  }
+  ngOnInit(): void {}
 
   userForm = this.fb.group({
     email: new FormControl('', [
@@ -41,7 +37,6 @@ export class UserRegistrationComponent implements OnInit {
     lastName: new FormControl('', [Validators.required]),
     phone: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
-    isGhost: false,
   });
 
   newUser = this.userForm.value;

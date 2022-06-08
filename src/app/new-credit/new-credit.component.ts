@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map, Observable, startWith, take } from 'rxjs';
 import { TestService } from '../services/test.service';
-import { LoanServiceService } from '../services/loan-service.service';
+import { LoanServiceService } from '../services/loan.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 @Component({

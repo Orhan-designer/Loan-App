@@ -1,7 +1,7 @@
 <div class="header">
-    <div class="header_subcontainer">
+    <div class="header-subcontainer">
 
-        <button *ngIf="!authService.loggedIn()" mat-icon-button [matMenuTriggerFor]="registerAndLoginMenu">
+        <button *ngIf="!userAuthorized()" mat-icon-button [matMenuTriggerFor]="registerAndLoginMenu">
             <mat-icon>menu</mat-icon>
         </button>
 

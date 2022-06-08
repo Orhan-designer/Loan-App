@@ -2,7 +2,7 @@
   background-color: rgba(26, 22, 22, 0.822);
 }
 
-.header_subcontainer {
+.header-subcontainer {
   width: 100%;
   display: flex;
   justify-content: space-around;

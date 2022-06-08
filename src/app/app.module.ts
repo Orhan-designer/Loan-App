@@ -35,14 +35,13 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 import { AddNewFriendsComponent } from './add-new-friends/add-new-friends.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { NewFriendsService } from './services/new-friends.service';
-import { LoanServiceService } from './services/loan-service.service';
+import { LoanServiceService } from './services/loan.service';
 import { PopUpComponent } from './pop-up/pop-up.component';
 import { NewCreditComponent } from './new-credit/new-credit.component';
 import { AuthGuard } from './auth.guard';
-import { UserInterceptorService } from './services/user-interceptor.service';
+import { UserInterceptorService } from './Interceptors/user.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
-import { GhostProfileService } from './services/ghost-profile.service';
 import { RepayComponent } from './repay/repay.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
@@ -102,7 +101,6 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     NewFriendsService,
     LoanServiceService,
     AuthGuard,
-    GhostProfileService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: UserInterceptorService,

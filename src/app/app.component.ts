@@ -5,9 +5,8 @@ import { AuthService } from './services/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: '../app/app.component.html',
-  styleUrls: ['../app/app.component.css']
+  styleUrls: ['../app/app.component.css'],
 })
-
 export class AppComponent {
   title = 'LoanApp';
 
@@ -18,7 +17,8 @@ export class AppComponent {
     private router: Router,
     public authService: AuthService
   ) {
-    this.router.events.forEach((event: any) => { //скрываем header в /register и /login
+    this.router.events.forEach((event: any) => {
+      //скрываем header в /register и /login
       if (event instanceof NavigationStart) {
         if (event['url'] === '/signup') {
           this.hasHeader = false;
@@ -26,15 +26,22 @@ export class AppComponent {
           this.hasHeader = false;
         } else {
           this.hasHeader = true;
-        };
-      };
+        }
+      }
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   public selectLanguage(event: any) {
-    this.translateService.use(event.target.value)
+    this.translateService.use(event.target.value);
+  }
+
+  //Скрываем навигацию по приложению в бургер-меню, если пользователь не зарегистрирован/авторизован
+  userAuthorized() {
+    if (this.authService.loggedIn()) {
+      return true;
+    }
   }
 
   logout() {

@@ -17,7 +17,6 @@ export class LoansComponent implements OnInit {
   ) {}
 
   isLoansLoaded: boolean = false;
-  // toggle: boolean = false;
   panelOpenState = false;
   loans: any;
   users: any[] = [];
@@ -51,7 +50,12 @@ export class LoansComponent implements OnInit {
 
   repay(id: any) {
     this.dialog
-      .open(RepayComponent, { data: id })
+      .open(RepayComponent, {
+        data: id,
+        width: '18.2%',
+        height: '22%',
+        panelClass: 'custom-dialog-container',
+      })
       .afterClosed()
       .subscribe(() => {
         this.getLoans();
@@ -60,12 +64,10 @@ export class LoansComponent implements OnInit {
   //Функция которая выводит общую сумму за все задолженности всех пользователей, и отдельно каждого по селекту.
   //знак вопроса используется для безопасной загрузки документа HTML, пока компонент генерирует DOC для отображения браузера.
   showSum(val?) {
-    // this.toggle = false;
     /* фильтруем пользователей по второму пользователю и id первого пользвателя, если true, 
     то выводится результат первого пользователя, иначе результат второго пользователя */
-    let debts = this.loans.filter(
-      (el) => (val ? el.secondPersonID === this.id : el.secondPersonID !== this.id)
-      // this.toggle = true
+    let debts = this.loans.filter((el) =>
+      val ? el.secondPersonID === this.id : el.secondPersonID !== this.id
     );
 
     return debts.reduce((sum, el) => sum + Number(el.total), 0);

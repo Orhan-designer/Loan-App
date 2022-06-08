@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NewFriendsService } from '../services/new-friends.service';
-import { MatDialog } from '@angular/material/dialog';
-import { PopUpComponent } from '../pop-up/pop-up.component';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 
@@ -16,7 +14,6 @@ export class AddNewFriendsComponent implements OnInit {
   constructor(
     private router: Router,
     private _friendService: NewFriendsService,
-    private dialog: MatDialog,
     private translateService: TranslateService,
     private toastr: ToastrService,
     private fb: FormBuilder
@@ -47,14 +44,6 @@ export class AddNewFriendsComponent implements OnInit {
       );
       this.toastr.success('Пользователь успешно добавлен!');
       this.router.navigate(['/contact-list']);
-    });
-  }
-
-  createDialog() {
-    this.dialog.open(PopUpComponent, {
-      data: {
-        addFriend: 'A new friend has been added to your contact list',
-      },
     });
   }
 
