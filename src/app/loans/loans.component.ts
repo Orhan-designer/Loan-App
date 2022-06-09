@@ -36,7 +36,6 @@ export class LoansComponent implements OnInit {
     this.isLoansLoaded = false;
     this.testService.getLoans(this.id, user.id).subscribe((res) => {
       this.loans = res.values.results;
-      console.log(this.loans)
       this.isLoansLoaded = true;
     });
   }
@@ -70,7 +69,6 @@ export class LoansComponent implements OnInit {
     let debts = this.loans.filter((el) =>
       val ? el.secondPersonID === this.id : el.secondPersonID !== this.id
     );
-
     return debts.reduce((sum, el) => sum + Number(el.total), 0);
   }
 

@@ -51,7 +51,7 @@ export class NewCreditComponent implements OnInit {
     this.myId = JSON.parse(localStorage.getItem('user')).id;
 
     if (this.testService.userInfo) {
-      this.userId = this.testService.userInfo;
+      this.userId = this.testService.userInfo.id;
     } else {
       this.userId = JSON.parse(localStorage.getItem('user')).id;
     }
