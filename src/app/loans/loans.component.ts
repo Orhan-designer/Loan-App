@@ -25,7 +25,7 @@ export class LoansComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.testService.userInfo) {
-      this.id = this.testService.userInfo;
+      this.id = this.testService.userInfo.id;
     } else {
       this.id = JSON.parse(localStorage.getItem('user')).id;
     }
@@ -36,12 +36,13 @@ export class LoansComponent implements OnInit {
     this.isLoansLoaded = false;
     this.testService.getLoans(this.id, user.id).subscribe((res) => {
       this.loans = res.values.results;
+      console.log(this.loans)
       this.isLoansLoaded = true;
     });
   }
 
   setColor(loan) {
-    if (+loan.total >= 0) {
+    if (Number(loan.total) >= 0) {
       return '#4eff4e';
     } else {
       return '#ff7c7c';

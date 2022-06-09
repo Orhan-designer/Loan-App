@@ -1,72 +1,74 @@
 {
-    "buttons": {
-        "registration": "Registration",
-        "logIn": "Sign In",
-        "logOut": "Log out",
-        "addFriend": "Add new friends",
-        "newLoan": "New Loan",
-        "contactList": "Contact List",
-        "loans": "Loans",
-        "createNewLoan": "Create New Loan",
-        "addNewFriend": "Add New Friend",
-        "repay": "To Repay",
-        "anotherRepay": "Repay"
-    },
-    "title": {
-        "registerForm": "Register Form",
-        "loanManagementSystem": "Loan Management System",
-        "openNewLoan": "Open New Loan",
-        "filter": "Filter",
-        "addNewFriend": "Add New Friend",
-        "logIn": "Sign In",
-        "register": "Registered successful",
-        "addFriend": "A new friend has been added to your contact list",
-        "openLoan": "A new loan has been added to your loans list",
-        "pickLanguage": "Pick Language",
-        "amount": "Enter Amount"
-    },
-    "label": {
-        "email": "Email",
-        "password": "Password",
-        "loanName": "Loan Name",
-        "firstPerson": "First Person",
-        "secondPerson": "Second Person",
-        "howMuch": "How Much",
-        "reason": "Reason",
-        "selectUser": "Select User",
-        "search": "Email/First Name/Last Name/Phone",
-        "enterYouLogin": "Enter you login",
-        "enterYouPassword": "Enter you password",
-        "pickOne": "Pick One",
-        "firstName": "First Name",
-        "lastName": "Last Name",
-        "phone": "Phone"
-    },
-    "span": {
-        "userName": "User Name"
-    },
-    "p": {
-        "sum": "Sum",
-        "reason": "Reason",
-        "date": "Date",
-        "total": "Total",
-        "history": "History"
-    },
-    "ngContainer": {
-        "fullName": "Full Name",
-        "phone": "Phone"
-    },
-    "errors": {
-        "emailRequired": "Email is required",
-        "emailIsValid": "Please enter a valid email address",
-        "passwordRequired": "Password is required",
-        "nameRequired": "Name is required",
-        "phoneRequired": "Phone is required",
-        "loanNameRequired": "Loan name is required",
-        "firstNameRequired": "First name is required",
-        "secondNameRequired": "Second name is required",
-        "howMuchRequired": "How much is required",
-        "reasonRequired": "Describe you reason",
-        "lastNameRequired": "Last name is required"
-    }
+  "buttons": {
+    "registration": "Registration",
+    "logIn": "Sign In",
+    "logOut": "Log out",
+    "addFriend": "Add new friends",
+    "newLoan": "New Loan",
+    "contactList": "Contact List",
+    "loans": "Loans",
+    "createNewLoan": "Create New Loan",
+    "addNewFriend": "Add New Friend",
+    "repay": "To Repay",
+    "anotherRepay": "Repay"
+  },
+  "title": {
+    "registerForm": "Register Form",
+    "loanManagementSystem": "Loan Management System",
+    "openNewLoan": "Open New Loan",
+    "filter": "Filter",
+    "addNewFriend": "Add New Friend",
+    "logIn": "Sign In",
+    "register": "Registered successful",
+    "addFriend": "A new friend has been added to your contact list",
+    "openLoan": "A new loan has been added to your loans list",
+    "pickLanguage": "Pick Language",
+    "amount": "Enter Amount"
+  },
+  "label": {
+    "email": "Email",
+    "password": "Password",
+    "loanName": "Loan Name",
+    "firstPerson": "First Person",
+    "secondPerson": "Second Person",
+    "howMuch": "How Much",
+    "reason": "Reason",
+    "selectUser": "Select User",
+    "search": "Email/First Name/Last Name/Phone",
+    "enterYouLogin": "Enter you login",
+    "enterYouPassword": "Enter you password",
+    "pickOne": "Pick One",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone"
+  },
+  "span": {
+    "userName": "User Name"
+  },
+  "p": {
+    "sum": "Sum",
+    "reason": "Reason",
+    "date": "Date",
+    "total": "Total",
+    "history": "History",
+    "myDebts": "My Debts",
+    "friendsDebts": "Friends Debts"
+  },
+  "ngContainer": {
+    "fullName": "Full Name",
+    "phone": "Phone"
+  },
+  "errors": {
+    "emailRequired": "Email is required",
+    "emailIsValid": "Please enter a valid email address",
+    "passwordRequired": "Password is required",
+    "nameRequired": "Name is required",
+    "phoneRequired": "Phone is required",
+    "loanNameRequired": "Loan name is required",
+    "firstNameRequired": "First name is required",
+    "secondNameRequired": "Second name is required",
+    "howMuchRequired": "How much is required",
+    "reasonRequired": "Describe you reason",
+    "lastNameRequired": "Last name is required"
+  }
 }

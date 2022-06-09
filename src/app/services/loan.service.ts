@@ -12,7 +12,6 @@ export class LoanServiceService {
   }
 
   repay(loan) {
-    console.log(loan);
     return this.http.post<any>(`${environment.apiUrl}/repay`, loan);
   }
 }

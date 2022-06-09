@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from './services/auth.service';
 @Component({
@@ -17,16 +17,26 @@ export class AppComponent {
     private router: Router,
     public authService: AuthService
   ) {
-    this.router.events.forEach((event: any) => {
-      //скрываем header в /register и /login
-      if (event instanceof NavigationStart) {
-        if (event['url'] === '/signup') {
-          this.hasHeader = false;
-        } else if (event['url'] === '/signin') {
-          this.hasHeader = false;
-        } else {
-          this.hasHeader = true;
-        }
+    // this.router.events.forEach((event: any) => {
+    //   /* Сделать проверку по токену, если есть, то отображать навигацию в меню бургер, если токена нет, то скрывать.
+    //   Нужно доставать токен из localstorage и делать по нему проверку.*/
+    //   if (event instanceof NavigationStart) {
+    //     if (event['url'] === '/signup') {
+    //       this.hasHeader = false;
+    //     } else if (event['url'] === '/signin') {
+    //       this.hasHeader = false;
+    //     } else {
+    //       this.hasHeader = true;
+    //     }
+    //   }
+    // });
+    this.router.events.subscribe(() => {
+      if (localStorage.getItem('token') === '/signup') {
+        this.hasHeader = false;
+      } else if (localStorage.getItem('token') === '/signin') {
+        this.hasHeader = false;
+      } else {
+        this.hasHeader = true;
       }
     });
   }
@@ -38,7 +48,7 @@ export class AppComponent {
   }
 
   //Скрываем навигацию по приложению в бургер-меню, если пользователь не зарегистрирован/авторизован
-  userAuthorized() {
+  isAuthorized() {
     if (this.authService.loggedIn()) {
       return true;
     }

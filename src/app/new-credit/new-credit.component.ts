@@ -112,7 +112,7 @@ export class NewCreditComponent implements OnInit {
 
   onSubmit(): void {
     this.addNewCredit = this.newCreditForm.value;
-    this.addNewCredit.date = new Date();
+    // this.addNewCredit.date = new Date();
     this.addNewCredit.firstPerson = this.name
       ? this.name
       : { name: this.addNewCredit.firstPerson, id: null };
@@ -124,8 +124,7 @@ export class NewCreditComponent implements OnInit {
     this.addNewCredit.howMuch = `-${this.addNewCredit.howMuch}`; //передаём в сервис, форму кредита
     this._loan.createLoan(this.addNewCredit).subscribe(
       (res) => {
-        console.log('res', res);
-        this.toastr.success('Кредит создан!');
+        this.toastr.success('Кредит успешно открыт!');
       },
       (err) => console.log(err)
     );

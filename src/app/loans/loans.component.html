@@ -9,8 +9,8 @@
         </mat-select>
     </mat-form-field>
     <div *ngIf="isLoansLoaded">
-        <p class="debts">My Debts: {{showSum(true)}}</p>
-        <p class="debts">Friends Debts: {{showSum()}}</p>
+        <p class="debts">{{'p.myDebts' | translate}}: {{showSum(true)}}</p>
+        <p class="debts">{{'p.friendsDebts' | translate}}: {{showSum()}}</p>
     </div>
     <mat-accordion *ngIf="isLoansLoaded">
         <mat-expansion-panel *ngFor="let loan of loans" (opened)="panelOpenState = true"
