@@ -112,7 +112,6 @@ export class NewCreditComponent implements OnInit {
 
   onSubmit(): void {
     this.addNewCredit = this.newCreditForm.value;
-    // this.addNewCredit.date = new Date();
     this.addNewCredit.firstPerson = this.name
       ? this.name
       : { name: this.addNewCredit.firstPerson, id: null };

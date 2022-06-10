@@ -31,9 +31,9 @@ export class AppComponent {
     //   }
     // });
     this.router.events.subscribe(() => {
-      if (localStorage.getItem('token') === '/signup') {
+      if (localStorage.getItem('token') !== '/signup') {
         this.hasHeader = false;
-      } else if (localStorage.getItem('token') === '/signin') {
+      } else if (localStorage.getItem('token') !== '/signin') {
         this.hasHeader = false;
       } else {
         this.hasHeader = true;
