@@ -31,7 +31,7 @@ export class NewCreditComponent implements OnInit {
   name: any; //имя пользователя, который даёт в долг
   name2: any; //имя пользователя, который берёт в долг
 
-  userId: string; //id второго пользователя
+  userId: any; //id второго пользователя
   myId: string; //id первого пользователя
 
   filteredOptions!: Observable<any[]>;

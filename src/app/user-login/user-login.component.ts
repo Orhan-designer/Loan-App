@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
 import { TestService } from '../services/test.service';
 import { ToastrService } from 'ngx-toastr';
+import { Utils } from '../auth.utils';
 
 @Component({
   selector: 'app-user-login',
@@ -14,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 export class UserLoginComponent implements OnInit {
   constructor(
     private _auth: AuthService,
+    private utils: Utils,
     private router: Router,
     private translateService: TranslateService,
     private fb: FormBuilder,
@@ -22,7 +24,7 @@ export class UserLoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this._auth.loggedIn()) {
+    if (this.utils.loggedIn()) {
       this.router.navigate(['contact-list']);
     }
   }

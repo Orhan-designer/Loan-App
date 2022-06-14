@@ -46,23 +46,29 @@ p {
 }
 
 /* media queries */
-@media (max-width: 991px) {
+@media (max-width: 1200px) {
   .container {
-    width: 90vw;
+    width: 100vw;
   }
 }
 
 /* media queries */
 @media (max-width: 450px) {
   .container {
-    width: 95vw;
+    width: 90vw;
   }
 
-  .container p {
+  .container mat-expansion-panel-header mat-panel-title {
     font-size: 13px;
   }
 
-  .container mat-accordion mat-expansion-panel-header mat-panel-description {
-    font-size: 10px;
+  .container mat-expansion-panel-header mat-panel-description span {
+    font-size: 13px;
+  }
+
+  .container div p,
+  span,
+  button {
+    font-size: 13px;
   }
 }

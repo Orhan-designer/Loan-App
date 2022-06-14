@@ -18,17 +18,17 @@
         <mat-menu #registerAndLoginMenu="matMenu">
             <ul class="navbar-nav">
                 <li>
-                    <a routerLink="/signup" *ngIf="!authService.loggedIn()">{{'buttons.registration' |translate}}</a>
+                    <a routerLink="/signup" *ngIf="!utils.loggedIn()">{{'buttons.registration' |translate}}</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
                 <li>
-                    <a routerLink="/signin" *ngIf="!authService.loggedIn()">{{'buttons.logIn' |translate}}</a>
+                    <a routerLink="/signin" *ngIf="!utils.loggedIn()">{{'buttons.logIn' |translate}}</a>
                 </li>
             </ul>
         </mat-menu>
 
-        <button *ngIf="authService.loggedIn()" mat-icon-button [matMenuTriggerFor]="menu">
+        <button *ngIf="utils.loggedIn()" mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>menu</mat-icon>
         </button>
         
@@ -50,7 +50,7 @@
                     <li>{{'buttons.addNewFriend' | translate}}</li>
                 </a>
 
-                <button *ngIf="authService.loggedIn()" mat-raised-button (click)="logout()">
+                <button *ngIf="utils.loggedIn()" mat-raised-button (click)="logout()">
                     {{'buttons.logOut' | translate}}
                     <span class='material-icons'>logout</span>
                 </button>

@@ -9,6 +9,5 @@ export class NewFriendsService {
 
   addFriend(friend) {
     return this.http.post<any>(`${environment.apiUrl}/add-new-friend`, friend);
-    //отправляем пост запрос на бэк
   }
 }

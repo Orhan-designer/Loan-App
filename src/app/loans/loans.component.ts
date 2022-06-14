@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TestService } from '../services/test.service';
 import { TranslateService } from '@ngx-translate/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { RepayComponent } from '@app/repay/repay.component';
 
 @Component({
@@ -13,7 +13,7 @@ export class LoansComponent implements OnInit {
   constructor(
     private testService: TestService,
     private translateService: TranslateService,
-    private dialog: MatDialog
+    public dialog: MatDialog
   ) {}
 
   isLoansLoaded: boolean = false;
@@ -48,13 +48,10 @@ export class LoansComponent implements OnInit {
     }
   }
 
-  repay(id: any) {
+  repay(id: any): void {
     this.dialog
       .open(RepayComponent, {
         data: id,
-        width: '18.2%',
-        height: '22%',
-        panelClass: 'custom-dialog-container',
       })
       .afterClosed()
       .subscribe(() => {

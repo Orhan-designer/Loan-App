@@ -36,13 +36,13 @@ import { AddNewFriendsComponent } from './add-new-friends/add-new-friends.compon
 import { UserLoginComponent } from './user-login/user-login.component';
 import { NewFriendsService } from './services/new-friends.service';
 import { LoanServiceService } from './services/loan.service';
-import { PopUpComponent } from './pop-up/pop-up.component';
 import { NewCreditComponent } from './new-credit/new-credit.component';
 import { AuthGuard } from './auth.guard';
 import { UserInterceptorService } from './Interceptors/user.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { RepayComponent } from './repay/repay.component';
+import { Utils } from './auth.utils';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(httpClient);
@@ -56,7 +56,6 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     ContactListComponent,
     AddNewFriendsComponent,
     UserLoginComponent,
-    PopUpComponent,
     NewCreditComponent,
     RepayComponent,
   ],
@@ -97,6 +96,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     NgxLocalStorageModule.forRoot(),
   ],
   providers: [
+    Utils,
     AuthService,
     NewFriendsService,
     LoanServiceService,

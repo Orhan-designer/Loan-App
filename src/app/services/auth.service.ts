@@ -25,12 +25,4 @@ export class AuthService {
       })
     );
   }
-
-  loggedIn() {
-    return !!JSON.parse(JSON.stringify(localStorage.getItem('token')));
-  }
-
-  getToken() {
-    return localStorage.getItem('user');
-  }
 }

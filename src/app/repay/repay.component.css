@@ -13,3 +13,15 @@
     border-radius: 5px;
     font-family: 'Acme', sans-serif;
 }
+
+@media (max-width: 991px) {
+    .container {
+        width: 30vw;
+    }
+}
+
+@media (max-width: 450px) {
+    .container {
+        width: 50vw;
+    }
+}

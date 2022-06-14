@@ -11,22 +11,18 @@ export class TestService {
 
   user: any;
   loansList: any[] = [];
-  usersList: any[] = [];
 
-  get loans() {
-    return this.loansList;
-  }
-
-  get users() {
-    return this.usersList;
-  }
-
+  /* функция отвечает за то, что по id основного пользователя
+  отображает пользователей в contact-list и пользоваталей должников в loans-list */
   get userInfo() {
     return this.user;
   }
-
-  addLoan(loan: any): void {
-    this.loansList.push(loan); //call api post
+  /* эта функция показывает, что когда у пользователя беруд в долг, отображается id 
+  именно того пользователя у которого взяли. То есть, если зайти под другим пользователем, 
+  то будет показываться его id, если потом зайти ещё под другим, то будет отображаться его id, 
+  и кредит будет открывать на его id*/
+  addLoan(loan: any) {
+    console.log(this.loansList.push(loan)); //call api post
   }
 
   setUser(user: any) {

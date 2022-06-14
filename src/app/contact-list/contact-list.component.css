@@ -1,4 +1,4 @@
-table {
+.mat-table  {
   width: 100%;
 }
 
@@ -12,8 +12,31 @@ th {
 }
 
 /* media queries */
+@media (max-width: 1200px) {
+  .container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 991px) {
+  .container {
+    width: 100%;
+  }
+}
+
 @media (max-width: 450px) {
   .container {
     width: 90vw;
+    overflow: auto;
+    display: flex;
+  }
+
+  .container .mat-header-cell {
+    font-size: 13px;
+  }
+
+  .container .mat-cell {
+    font-size: 13px;
+    padding: 0 3px;
   }
 }
