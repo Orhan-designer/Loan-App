@@ -50,6 +50,10 @@
                     <li>{{'buttons.addNewFriend' | translate}}</li>
                 </a>
 
+                <a routerLink="/accounting-group-debts">
+                    <li>Debts</li>
+                </a>
+
                 <button *ngIf="utils.loggedIn()" mat-raised-button (click)="logout()">
                     {{'buttons.logOut' | translate}}
                     <span class='material-icons'>logout</span>

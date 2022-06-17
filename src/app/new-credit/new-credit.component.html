@@ -6,7 +6,7 @@
         <mat-form-field>
             <mat-label>{{'label.loanName' | translate}}</mat-label>
             <input type="text" matInput id="loanName" name="loanName" placeholder="{{'label.loanName' | translate}}"
-                required formControlName="loanName">
+                formControlName="loanName">
             <mat-error *ngIf="newCreditForm.controls['loanName'].hasError('required')">
                 {{'errors.loanNameRequired' | translate}}
             </mat-error>
@@ -45,7 +45,7 @@
         <mat-form-field>
             <mat-label>{{'label.howMuch' | translate}}</mat-label>
             <input type="number" matInput id="howMuch" name="howMuch" placeholder="{{'label.howMuch' | translate}}"
-                required formControlName="howMuch">
+                formControlName="howMuch">
             <mat-error *ngIf="newCreditForm.controls['howMuch'].hasError('required')">
                 {{'errors.howMuchRequired' | translate}}
             </mat-error>

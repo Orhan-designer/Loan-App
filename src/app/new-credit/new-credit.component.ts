@@ -23,7 +23,7 @@ export class NewCreditComponent implements OnInit {
     private toastr: ToastrService
   ) {}
 
-  @ViewChild('autosize') autosize!: CdkTextareaAutosize;
+  @ViewChild('autosize') autosize: CdkTextareaAutosize;
 
   options: any[] = [];
   usersLoading: boolean = true;

@@ -40,9 +40,12 @@ import { NewCreditComponent } from './new-credit/new-credit.component';
 import { AuthGuard } from './auth.guard';
 import { UserInterceptorService } from './Interceptors/user.interceptor';
 import { ToastrModule } from 'ngx-toastr';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 import { DatePipe } from '@angular/common';
 import { RepayComponent } from './repay/repay.component';
 import { Utils } from './auth.utils';
+import { AccountingGroupDebtsComponent } from './accounting-group-debts/accounting-group-debts.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(httpClient);
@@ -58,6 +61,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     UserLoginComponent,
     NewCreditComponent,
     RepayComponent,
+    AccountingGroupDebtsComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,6 +84,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     MatTabsModule,
     MatDialogModule,
     MatMenuModule,
+    MatCheckboxModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-center',

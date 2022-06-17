@@ -22,7 +22,7 @@ export class TestService {
   то будет показываться его id, если потом зайти ещё под другим, то будет отображаться его id, 
   и кредит будет открывать на его id*/
   addLoan(loan: any) {
-    console.log(this.loansList.push(loan)); //call api post
+    this.loansList.push(loan); //call api post
   }
 
   setUser(user: any) {

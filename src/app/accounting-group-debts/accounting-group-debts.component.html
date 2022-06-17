@@ -1,0 +1,89 @@
+<div class="container">
+  <form [formGroup]="myForm" (ngSubmit)="submit()">
+    <mat-form-field>
+      <mat-label>Event</mat-label>
+      <input type="text" matInput name="event" formControlName="event" />
+      <mat-error *ngIf="myForm.controls['event'].hasError('required')">
+        Specify event
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>First Person</mat-label>
+      <input
+        type="text"
+        placeholder="{{ 'label.pickOne' | translate }}"
+        matInput
+        formControlName="firstPerson"
+        [matAutocomplete]="auto"
+        readonly="true"
+      />
+      <mat-error *ngIf="myForm.controls['firstPerson'].hasError('required')">
+        enter user name
+      </mat-error>
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option
+          *ngFor="let option of filteredOptions | async"
+          [value]="option.name"
+          (click)="selectName(option)"
+        >
+          {{ option.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field
+      *ngFor="let user of getFormsControls()['controls']; let i = index"
+      formArrayName="userName"
+    >
+      <mat-label>User Name</mat-label>
+      <input
+        type="text"
+        placeholder="{{ 'label.pickOne' | translate }}"
+        matInput
+        [formControlName]="i"
+        formControlName="userName"
+        [matAutocomplete]="auto2"
+      />
+      <mat-error *ngIf="myForm.controls['userName'].hasError('required')">
+        {{ "errors.secondNameRequired" | translate }}
+      </mat-error>
+      <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete">
+        <mat-option
+          *ngFor="let option of filteredOptions2 | async"
+          [value]="option.name"
+          (click)="selectName2(option)"
+        >
+          {{ option.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Sum</mat-label>
+      <input
+        type="number"
+        matInput
+        name="totalSum"
+        formControlName="totalSum"
+      />
+      <mat-error *ngIf="myForm.controls['totalSum'].hasError('required')">
+        Specify sum
+      </mat-error>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      [disabled]="myForm.status === 'INVALID'"
+      (click)="addUser()"
+    >
+      Add one more user
+    </button>
+
+    <!-- <button mat-raised-button>Delete</button> -->
+
+    <button mat-raised-button [disabled]="myForm.status === 'INVALID'">
+      Pay
+    </button>
+  </form>
+</div>
